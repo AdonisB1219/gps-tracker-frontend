@@ -1,7 +1,7 @@
 import { FormControl, Grid, TextField } from '@mui/material';
 import { Controller, FieldError } from 'react-hook-form';
+import { gridSize } from '../../../constants';
 
-import { gridSize } from '@/shared/constants';
 
 type CustomTextFieldProps = {
   label: string;

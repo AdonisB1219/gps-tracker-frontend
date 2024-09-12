@@ -1,4 +1,4 @@
-import { Empresa } from "../app";
+import { User } from "../app/user.interface";
 
 export interface LoginResponse {
   ok: boolean;
@@ -7,14 +7,3 @@ export interface LoginResponse {
   token: string;
 }
 
-export interface User {
-  id: number;
-  nombre: string;
-  identificacion: string;
-  direccion: string;
-  telefono: string;
-  email: string;
-  rolId: number;
-  Empresa: Empresa
-
-}

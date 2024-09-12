@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
-import { FaHome, FaUser, FaUserAlt } from 'react-icons/fa';
-import { FaPencil, FaUserDoctor } from 'react-icons/fa6';
-import { MdAdminPanelSettings, MdOutlinePets, MdOutlineWork } from 'react-icons/md';
+import { FaHome, FaUser } from 'react-icons/fa';
+import { FaPencil } from 'react-icons/fa6';
 
 interface NavItem {
   title: string;

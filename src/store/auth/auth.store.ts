@@ -1,8 +1,7 @@
-import { toast } from 'react-toastify';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Nullable } from '../../shared/interfaces/global';
-import { User } from '../../shared/interfaces/auth';
+import { User } from '../../shared/interfaces/app/user.interface';
 
 
 export type UserLogin = Nullable<User>;

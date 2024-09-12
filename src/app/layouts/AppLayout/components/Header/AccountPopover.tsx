@@ -11,6 +11,7 @@ import { alpha } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { navConfig } from '../../../../../shared/constants/__mock__';
 import { useAuthStore } from '../../../../../store/auth/auth.store';
+import { User } from '../../../../../shared/interfaces/app/user.interface';
 
 
 const MENU_OPTIONS = navConfig;
@@ -22,7 +23,7 @@ const AccountPopover = () => {
 
   ///* global state
     const logout = useAuthStore(s => s.logout);
-    const user = useAuthStore(s => s.user);
+    const user: User = useAuthStore(s => s.user)!;
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
     setOpen(event.currentTarget);
@@ -84,15 +85,13 @@ const AccountPopover = () => {
             {user?.nombre}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {user?.email}
           </Typography>
         </Box>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {MENU_OPTIONS.map(option => {
-          if (option?.admin && (user?.id && user?.rolId < 3)) return null;
-          if (option?.superadmin && (user?.id && user?.rolId < 4)) return null;
+
 
           return (
             <Link

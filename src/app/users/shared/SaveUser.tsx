@@ -36,7 +36,7 @@ const SaveUser: React.FC<SaveUserProps> = ({ title, user }) => {
 
 
     ///* handlers
-    const onSave = async (data: SaveFormData) => {
+    const onSave = async () => {
         if (!isValid) return;        
 
         ///* upd

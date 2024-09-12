@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import { ReactNode, forwardRef, memo } from 'react';
 
-import { SxPropsThemeType } from '@/shared/interfaces';
 import { StyledRootScrollbar, StyledScrollbar } from '.';
+import { SxPropsThemeType } from '../../../interfaces/ui';
 
 // ----------------------------------------------------------------------
 

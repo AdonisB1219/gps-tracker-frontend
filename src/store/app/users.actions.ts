@@ -1,6 +1,6 @@
 import { User } from "../../shared/interfaces/app/user.interface";
 
-export const useFetchUsers = (params?: GetUsersParams) => {
+export const useFetchUsers = () => {
     return JSON.parse(localStorage.getItem('mockedUsers')!);
 };
 

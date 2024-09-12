@@ -30,7 +30,6 @@ const UsersPage: React.FC<UsersPageProps> = () => {
   const {
     globalFilter,
     pagination,
-    searchTerm,
     onChangeFilter,
     setPagination,
   } = useTableFilter();

@@ -2,9 +2,9 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import { forwardRef, ReactNode } from 'react';
 
-import { SxPropsThemeType } from '@/shared/interfaces';
 import { Avatar } from '@mui/material';
 import { CustomRouterLink } from '.';
+import { SxPropsThemeType } from '../../../../interfaces/ui';
 
 interface LogoProps {
   disabledLink?: boolean;
