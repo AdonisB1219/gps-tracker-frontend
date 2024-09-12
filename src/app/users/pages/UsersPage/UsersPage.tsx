@@ -9,9 +9,8 @@ import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.util
 import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
 import { CustomTable } from '../../../../shared/components/ui/CustomTable';
 import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
-import { useFetchUsers } from '../../../../store/app/users.actions';
 
-export const returnUrlUsersPage = '/dashboard/users';
+export const returnUrlUsersPage = '/dashboard/usuarios';
 
 export type UsersPageProps = {};
 
@@ -36,14 +35,10 @@ const UsersPage: React.FC<UsersPageProps> = () => {
     setPagination,
   } = useTableFilter();
 
-  ///* fetch data
-  const {
-    users
-  } = JSON.parse(localStorage.getItem('mockedUsers')!);
-
 
   ///* handlers
   const onEdit = (user: User) => {
+    console.log("edit")
     setConfirmDialog({
       isOpen: true,
       title: 'Editar user',
@@ -83,10 +78,10 @@ const UsersPage: React.FC<UsersPageProps> = () => {
       },
 
       {
-        accessorKey: 'email',
+        accessorKey: 'correo',
         header: 'Email',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'email'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'correo'),
       },
     ],
     []
@@ -105,7 +100,7 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
       <CustomTable<User>
         columns={columns}
-        data={[]}
+        data={JSON.parse(localStorage.getItem('mockedUsers')!)}
         isLoading={false}
         isRefetching={false}
         // // search

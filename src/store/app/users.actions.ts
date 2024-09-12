@@ -1,3 +1,4 @@
+import { User } from "../../shared/interfaces/app/user.interface";
 
 export const useFetchUsers = (params?: GetUsersParams) => {
     return JSON.parse(localStorage.getItem('mockedUsers')!);
@@ -13,4 +14,6 @@ export type GetUsersParams = {
     telefono?: string;
     email?: string;
 };
+
+export type CreateUserParams = Omit<User, 'id'>;
 

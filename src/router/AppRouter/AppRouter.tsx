@@ -8,6 +8,7 @@ import { DashboardHome } from '../../app/home/pages/DashboardHome';
 import AuthRoutes from '../AuthRoutes/AuthRoutes';
 import { AuthLayout } from '../../auth/layout';
 import UsersPage from '../../app/users/pages/UsersPage/UsersPage';
+import CreateUserPage from '../../app/users/pages/CreateUserPage/CreateUserPage';
 
 
 const AppRouter = createBrowserRouter([
@@ -42,6 +43,10 @@ const AppRouter = createBrowserRouter([
       {
         path: 'usuarios',
         element: <UsersPage />
+      },
+      {
+        path: 'usuarios/crear',
+        element: <CreateUserPage />
       }
 
       ////* Pets
