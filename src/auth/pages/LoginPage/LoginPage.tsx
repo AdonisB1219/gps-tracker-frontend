@@ -18,6 +18,7 @@ import { toast } from 'react-toastify';
 import { loginFormSchema } from '../../../shared/util/auth.validacion-schema';
 import { CustomTextField } from '../../../shared/components/ui/CustomTextField';
 import { useAuthStore } from '../../../store/auth/auth.store';
+import { useLogin } from '../../../store/auth/auth.actions';
 
 export interface LoginPageInterface { }
 
@@ -29,34 +30,22 @@ type LoginFormData = {
 const LoginPage: React.FC<LoginPageInterface> = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-
+  const loginMutation = useLogin();
+  
   ///* form
   const form = useForm<LoginFormData>({
     resolver: yupResolver(loginFormSchema),
   });
+
   const {
     handleSubmit,
     formState: { errors: loginByEmailErros, isValid: isValidLoginData },
   } = form;
 
-  const setAuth = useAuthStore(s => s.setAuth);
-
-  ///* handlers
   const onSubmit = (data: LoginFormData) => {
     if (!isValidLoginData) return;
-    if (!captcha.current || false) {
-      toast.error('Debes marcar la casilla "No soy un robot"');
-      return;
-    }
 
-    const {email, password} = {
-      email: data.username_or_email,
-      password: data.password,
-    }
-
-    const user = localStorage.getItem('userData');
-    const userJson = JSON.parse(user!);
-    if(email == userJson?.user && password == userJson.password) return setAuth("token");
+    loginMutation.mutate(data);
   };
 
   const handleClickShowPassword = () => {

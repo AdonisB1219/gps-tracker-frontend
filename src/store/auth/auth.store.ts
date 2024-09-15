@@ -1,10 +1,11 @@
+import { toast } from 'react-toastify';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
 import { Nullable } from '../../shared/interfaces/global';
-import { User } from '../../shared/interfaces/app/user.interface';
+import { Admin } from '../../shared/interfaces/auth';
 
-
-export type UserLogin = Nullable<User>;
+export type UserLogin = Nullable<Admin>;
 
 interface AuthStore {
   ///* state
@@ -35,12 +36,11 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       logout: async () => {
+        toast.success('Cierre de sesión exitoso!');
 
         set({ token: '', user: null, isAuth: false });
 
-        localStorage.removeItem('auth');
-
-        // window.location.reload();
+        localStorage.clear();
       },
 
       logOutWithoutToken: () => {

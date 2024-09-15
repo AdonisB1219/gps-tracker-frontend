@@ -11,7 +11,7 @@ import { alpha } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { navConfig } from '../../../../../shared/constants/__mock__';
 import { useAuthStore } from '../../../../../store/auth/auth.store';
-import { User } from '../../../../../shared/interfaces/app/user.interface';
+import { Admin } from '../../../../../shared/interfaces/auth';
 
 
 const MENU_OPTIONS = navConfig;
@@ -23,7 +23,7 @@ const AccountPopover = () => {
 
   ///* global state
     const logout = useAuthStore(s => s.logout);
-    const user: User = useAuthStore(s => s.user)!;
+    const user: Admin = useAuthStore(s => s.user)!;
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
     setOpen(event.currentTarget);
@@ -54,14 +54,14 @@ const AccountPopover = () => {
       >
         <Avatar
           src={''}
-          alt={user?.nombre.at(0)?.toUpperCase()}
+          alt={user?.email.at(0)?.toUpperCase()}
           sx={{
             width: 36,
             height: 36,
             border: theme => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {user?.nombre?.charAt(0).toUpperCase()}
+          {user?.email?.charAt(0).toUpperCase()}
         </Avatar>
       </IconButton>
 
@@ -82,7 +82,7 @@ const AccountPopover = () => {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {user?.nombre}
+            {user?.email}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
           </Typography>

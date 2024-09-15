@@ -2,25 +2,15 @@ import { Bounce, ToastContainer } from "react-toastify";
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import AppRouter from "./router/AppRouter/AppRouter";
-import { useEffect } from "react";
-import { users } from "./shared/__mocks__/users";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-  useEffect(() => {
-    const initialData = {
-      user: 'admin@admin.com',
-      role: 'admin',
-      password: 'password'
-    };
-    localStorage.setItem('userData', JSON.stringify(initialData));
-    localStorage.setItem('mockedUsers', JSON.stringify(users))
-    
-
-    console.log('Datos iniciales seteados en localStorage');
-  }, []);
+  
+  const queryClient = new QueryClient();
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+
       <RouterProvider router={AppRouter} />
 
       <ToastContainer
@@ -37,7 +27,7 @@ function App() {
         theme="light"
         transition={Bounce}
       />
-    </>
+    </QueryClientProvider>
   );
 }
 
