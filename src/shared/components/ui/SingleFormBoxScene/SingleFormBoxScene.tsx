@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Stack, Typography } from '@mui/material';
-import { CreateOrCancelButtonsForm } from '../CreateOrCancelButtonsForm';
-import { useIsMediaQuery } from '../../../hooks/ui/useIsMediaQuery';
 
+import { useIsMediaQuery } from '../../../hooks/ui/useIsMediaQuery';
+import { CreateOrCancelButtonsForm } from '../CreateOrCancelButtonsForm';
 
 export type SingleFormBoxSceneProps = {
   children: React.ReactNode;

@@ -1,10 +1,10 @@
-import SaveUser from "../../shared/SaveUser";
+import SaveAdmin from "../../shared/SaveUser";
 
 
 export type CreateUserPageProps = {};
 
-const CreateUserPage: React.FC<CreateUserPageProps> = () => {
-  return <SaveUser title="Crear Empresa" />;
+const CreateAdminPage: React.FC<CreateUserPageProps> = () => {
+  return <SaveAdmin title="Crear Administrador" />;
 };
 
-export default CreateUserPage;
+export default CreateAdminPage;

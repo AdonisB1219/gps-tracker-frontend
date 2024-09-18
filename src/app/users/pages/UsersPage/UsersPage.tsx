@@ -1,16 +1,20 @@
 import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { download, generateCsv, mkConfig } from 'export-to-csv';
 
-import { User } from '../../../../shared/interfaces/app/user.interface';
 import { useUiConfirmModalStore } from '../../../../store/ui';
 import { useTableFilter } from '../../../../shared/hooks/useTableFilter';
 import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.utils';
 import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
 import { CustomTable } from '../../../../shared/components/ui/CustomTable';
 import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
+import { Admin } from '../../../../shared/interfaces/app/admin.interface';
+import { useDeleteAdmin, useFetchAdmins } from '../../../../store/app/admin.actions';
+import { toast } from 'react-toastify';
+import { ExportExcelButton } from '../../../../shared/components/ui/CustomButtons';
 
-export const returnUrlUsersPage = '/dashboard/usuarios';
+export const returnUrlUsersPage = '/dashboard/administradores';
 
 export type UsersPageProps = {};
 
@@ -24,63 +28,88 @@ const UsersPage: React.FC<UsersPageProps> = () => {
   );
 
   ///* mutations
-  //const deleteUser = useDeleteUser();
+  const deleteAdmin = useDeleteAdmin();
 
   ///* table
   const {
     globalFilter,
     pagination,
+    searchTerm,
     onChangeFilter,
     setPagination,
   } = useTableFilter();
 
+  const { pageIndex, pageSize } = pagination;
+
+  const {
+    data: AdminPagingRes,
+    isLoading,
+    isRefetching,
+  } = useFetchAdmins({
+    page: pageIndex + 1,
+    page_size: pageSize,
+    email: searchTerm,
+  });
+
 
   ///* handlers
-  const onEdit = (user: User) => {
-    console.log("edit")
+  const onEdit = (admin: Admin) => {
     setConfirmDialog({
       isOpen: true,
-      title: 'Editar user',
-      subtitle: '¿Está seguro que desea editar esta user?',
+      title: 'Editar admin',
+      subtitle: '¿Está seguro que desea editar este admin?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        navigate(`${returnUrlUsersPage}/editar/${user.id}`);
+        navigate(`${returnUrlUsersPage}/editar/${admin.id}`);
       },
     });
   };
 
+  
+  const onDelete = (admin: Admin) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: 'Eliminar admin',
+      subtitle: '¿Está seguro que desea eliminar este admin?',
+      onConfirm: () => {
+        setConfirmDialogIsOpen(false);
+        deleteAdmin.mutate(admin.id);
+      },
+    });
+  };
+
+  const csvConfig = mkConfig({
+    fieldSeparator: ',',
+    decimalSeparator: '.',
+    useKeysAsHeaders: true,
+  });
+
+
+  const handleExportData = () => {
+    const data = AdminPagingRes?.data || [];
+    if (!data.length) {
+      return toast.warning('No hay datos para exportar');
+    }
+
+    const flattenedData = data.map(item => {
+      return {
+        email: item?.email,
+      };
+    });
+    const csv = generateCsv(csvConfig)(flattenedData);
+    download(csvConfig)(csv);
+  };
 
 
 
   ///* columns
-  const columns = useMemo<MRT_ColumnDef<User>[]>(
+  const columns = useMemo<MRT_ColumnDef<Admin>[]>(
     () => [
       {
-        accessorKey: 'nombre',
-        header: 'Nombre',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'nombre'),
-      },
-
-      {
-        accessorKey: 'direccion',
-        header: 'Direccion',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'direccion'),
-      },
-
-      {
-        accessorKey: 'telefono',
-        header: 'Telefono',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'telefono'),
-      },
-
-      {
-        accessorKey: 'correo',
+        accessorKey: 'email',
         header: 'Email',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'correo'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'email'),
       },
     ],
     []
@@ -88,7 +117,7 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
   return (
     <SingleTableBoxScene
-      title="Clientes"
+      title="Administradores"
       createPageUrl={`${returnUrlUsersPage}/crear`}
     >
       <CustomSearch
@@ -97,26 +126,26 @@ const UsersPage: React.FC<UsersPageProps> = () => {
         text="por nombre"
       />
 
-      <CustomTable<User>
+      <CustomTable<Admin>
         columns={columns}
-        data={JSON.parse(localStorage.getItem('mockedUsers')!)}
-        isLoading={false}
-        isRefetching={false}
+        data={AdminPagingRes?.data || []}
+        isLoading={isLoading}
+        isRefetching={isRefetching}
         // // search
         enableGlobalFilter={false}
         // // pagination
         pagination={pagination}
         onPaging={setPagination}
-        rowCount={10}
+        rowCount={AdminPagingRes?.count}
         // // actions
         actionsColumnSize={180}
         // crud
         onEdit={onEdit}
-        onDelete={() => {}}
+        onDelete={onDelete}
         canDelete
         // excel
         renderTopToolbarCustomActions={() => {
-          return <></>
+          return <ExportExcelButton handleExportData={handleExportData} />;
         }}
       />
     </SingleTableBoxScene>
@@ -124,3 +153,4 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 };
 
 export default UsersPage;
+

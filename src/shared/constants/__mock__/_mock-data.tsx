@@ -17,10 +17,9 @@ export const navConfig: NavItem[] = [
     path: '/dashboard/home',
     icon: <FaHome />,
   },
-
   {
-    title: 'Usuarios',
-    path: '/dashboard/usuarios',
+    title: 'Administradores',
+    path: '/dashboard/administradores',
     icon: <FaUser />,
   },
   {
