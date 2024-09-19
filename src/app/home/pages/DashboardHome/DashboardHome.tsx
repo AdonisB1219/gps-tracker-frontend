@@ -20,7 +20,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = () => {
         Bienvenido a
       </Typography>
       <Typography variant="h2" component="h2" sx={{ margin: 0, pb: 3 }}>
-        Localízame Ahora
+        Incontro Divino
       </Typography>
 
       

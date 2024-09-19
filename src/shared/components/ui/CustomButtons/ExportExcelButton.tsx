@@ -1,7 +1,6 @@
 import { Box, Button } from '@mui/material';
 import { GrDocumentCsv } from 'react-icons/gr';
 
-import { useAuthStore} from '../../../../store/auth/auth.store';
 
 export type ExportExcelButtonProps = {
   handleExportData: () => void;

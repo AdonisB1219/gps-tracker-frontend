@@ -22,7 +22,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
           sx={{
             alignItems: 'center',
             background:
-              'radial-gradient(50% 50% at 50% 50%, #122647 0%, #A78AFE 100%)',
+              'radial-gradient(50% 50% at 50% 50%, #122647 0%, #213363 100%)',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
@@ -36,7 +36,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
               align="center"
               color="inherit"
               sx={{
-                fontSize: '24px',
+                fontSize: '40px',
                 lineHeight: '32px',
                 mb: 5,
               }}
@@ -66,7 +66,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
               }}
             >
               <Box width="60%">
-                <img alt="Settings" src="/Localizame-ahora.jpeg" draggable={false} />
+                <img alt="Settings" src="/logo-azul.jpeg" draggable={false} />
               </Box>
             </Box>
           </Box>

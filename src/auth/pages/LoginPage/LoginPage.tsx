@@ -14,10 +14,8 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
 import { useRef } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
-import { toast } from 'react-toastify';
 import { loginFormSchema } from '../../../shared/util/auth.validacion-schema';
 import { CustomTextField } from '../../../shared/components/ui/CustomTextField';
-import { useAuthStore } from '../../../store/auth/auth.store';
 import { useLogin } from '../../../store/auth/auth.actions';
 
 export interface LoginPageInterface { }

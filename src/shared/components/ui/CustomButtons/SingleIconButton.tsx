@@ -1,4 +1,4 @@
-import { GridSizeType } from '@/shared/constants';
+import { GridSizeType } from '../../../../shared/constants/ui.constants';
 import { Grid, IconButton, Tooltip } from '@mui/material';
 
 export type SingleIconButtonProps = {

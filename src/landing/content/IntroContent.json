@@ -1,0 +1,14 @@
+{
+  "title": "Incontro Divino",
+  "text": "Siempre cerca, siempre seguro.",
+  "button": [
+    {
+      "title": "Explore",
+      "color": "#E5CD8C"
+    },
+    {
+      "title": "Learn more",
+      "color": "#fff"
+    }
+  ]
+}
