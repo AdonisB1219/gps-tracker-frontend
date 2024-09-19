@@ -8,4 +8,6 @@ export const Container = styled("div")`
 
 export const StyledInput = styled("input")`
   font-size: 0.875rem;
+    width: 100%;
+      box-sizing: border-box; 
 `;

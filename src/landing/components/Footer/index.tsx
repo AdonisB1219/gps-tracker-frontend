@@ -51,9 +51,8 @@ const Footer = () => {
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{"Compañía"}</Title>
-              <Large to="/">{"About"}</Large>
+              <Large to="/">{"Nosotros"}</Large>
               <Large to="/">{"Blog"}</Large>
-              <Large to="/">{"Press"}</Large>
               <Large to="/">{"Careers & Culture"}</Large>
             </Col>
           </Row>
@@ -68,10 +67,9 @@ const Footer = () => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <SvgIcon
+                <img
                   src="logo.jpeg"
                   aria-label="homepage"
-                  width="101px"
                   height="64px"
                 />
               </LogoContainer>

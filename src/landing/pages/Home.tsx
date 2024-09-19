@@ -41,21 +41,21 @@ const Home = () => {
         content={AboutContent.text}
         section={AboutContent.section}
         icon="satellital.jpeg"
-        id="about"
+        id="nosotros"
       />
       <ContentBlock
         direction="right"
         title={MissionContent.title}
         content={MissionContent.text}
         icon="map.jpeg"
-        id="mission"
+        id="mision"
       />
       <ContentBlock
         direction="left"
         title={ProductContent.title}
         content={ProductContent.text}
         icon="satellital.jpeg"
-        id="product"
+        id="vision"
       />
       <Contact
         title={ContactContent.title}

@@ -6,6 +6,7 @@ export const StyledContainer = styled("div")<{
   position: relative;
   width: 100%;
   max-width: 1200px;
+  box-sizing: border-box; 
   margin-right: auto;
   margin-left: auto;
   padding: 0 60px;

@@ -3,11 +3,11 @@
   "text": "Siempre cerca, siempre seguro.",
   "button": [
     {
-      "title": "Explore",
+      "title": "Inicia",
       "color": "#E5CD8C"
     },
     {
-      "title": "Learn more",
+      "title": "Saber más",
       "color": "#fff"
     }
   ]

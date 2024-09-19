@@ -11,6 +11,8 @@ export const StyledTextArea = styled("textarea")`
   resize: none;
   font-size: 0.875rem;
   height: 185px;
+    box-sizing: border-box; 
+    width: 100%;
 `;
 
 export const Label = styled("label")`
