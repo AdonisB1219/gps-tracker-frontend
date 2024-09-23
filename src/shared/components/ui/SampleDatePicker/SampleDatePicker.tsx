@@ -83,7 +83,7 @@ const SampleDatePicker: React.FC<SampleDatePickerProps> = ({
                       required: required,
                     },
                   }}
-                  value={field.value ? dayjs(field.value) : ''}
+                  value={field.value ? dayjs(field.value) : null}
                   onChange={onChange}
                   minDate={minDate ? dayjs(minDate) : null}
                   maxDate={maxDate ? dayjs(maxDate) : null}

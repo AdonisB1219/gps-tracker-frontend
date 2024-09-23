@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { FaHome, FaUser } from 'react-icons/fa';
-import { FaPencil } from 'react-icons/fa6';
+import { FaHome, FaLocationArrow, FaUser, FaUserTie } from 'react-icons/fa';
+import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6';
 
 interface NavItem {
   title: string;
@@ -20,11 +20,26 @@ export const navConfig: NavItem[] = [
   {
     title: 'Administradores',
     path: '/dashboard/administradores',
+    icon: <FaUserTie />,
+  },
+  {
+    title: 'Clientes',
+    path: '/dashboard/clientes',
     icon: <FaUser />,
   },
   {
-    title: 'Mantenimiento',
-    path: '/dashboard/mantenimiento',
-    icon: <FaPencil />,
+    title: 'GPS',
+    path: '/dashboard/gps',
+    icon: <FaLocationCrosshairs />,
+  },
+  {
+    title: 'Mantenimiento Gps',
+    path: '/dashboard/mantenimiento/gps',
+    icon: <FaLocationDot />,
+  },
+  {
+    title: 'Mantenimiento Microchips',
+    path: '/dashboard/mantenimiento/microchips',
+    icon: <FaLocationArrow />,
   },
 ];

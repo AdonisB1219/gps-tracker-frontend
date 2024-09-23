@@ -9,16 +9,16 @@ import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.util
 import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
 import { CustomTable } from '../../../../shared/components/ui/CustomTable';
 import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
-import { Admin } from '../../../../shared/interfaces/app/admin.interface';
-import { useDeleteAdmin, useFetchAdmins } from '../../../../store/app/admin.actions';
+import { Gps } from '../../../../shared/interfaces/app/gps.interface';
 import { toast } from 'react-toastify';
 import { ExportExcelButton } from '../../../../shared/components/ui/CustomButtons';
+import { useDeleteGps, useFetchGpss } from '../../../../store/app/gps.actions';
 
-export const returnUrlUsersPage = '/dashboard/administradores';
+export const returnUrlGpssPage = '/dashboard/gps';
 
-export type UsersPageProps = {};
+export type GpssPageProps = {};
 
-const UsersPage: React.FC<UsersPageProps> = () => {
+const GpssPage: React.FC<GpssPageProps> = () => {
   const navigate = useNavigate();
 
   ///* global state
@@ -28,7 +28,7 @@ const UsersPage: React.FC<UsersPageProps> = () => {
   );
 
   ///* mutations
-  const deleteAdmin = useDeleteAdmin();
+  const deleteGps = useDeleteGps();
 
   ///* table
   const {
@@ -42,10 +42,10 @@ const UsersPage: React.FC<UsersPageProps> = () => {
   const { pageIndex, pageSize } = pagination;
 
   const {
-    data: AdminPagingRes,
+    data: GpsPagingRes,
     isLoading,
     isRefetching,
-  } = useFetchAdmins({
+  } = useFetchGpss({
     page: pageIndex + 1,
     page_size: pageSize,
     email: searchTerm,
@@ -53,27 +53,27 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
 
   ///* handlers
-  const onEdit = (admin: Admin) => {
+  const onEdit = (gps: Gps) => {
     setConfirmDialog({
       isOpen: true,
-      title: 'Editar admin',
-      subtitle: '¿Está seguro que desea editar este admin?',
+      title: 'Editar gps',
+      subtitle: '¿Está seguro que desea editar este gps?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        navigate(`${returnUrlUsersPage}/editar/${admin.id}`);
+        navigate(`${returnUrlGpssPage}/editar/${gps.id}`);
       },
     });
   };
 
   
-  const onDelete = (admin: Admin) => {
+  const onDelete = (gps: Gps) => {
     setConfirmDialog({
       isOpen: true,
-      title: 'Eliminar admin',
-      subtitle: '¿Está seguro que desea eliminar este admin?',
+      title: 'Eliminar gps',
+      subtitle: '¿Está seguro que desea eliminar este gps?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        deleteAdmin.mutate(admin.id);
+        deleteGps.mutate(gps.id);
       },
     });
   };
@@ -86,14 +86,14 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
 
   const handleExportData = () => {
-    const data = AdminPagingRes?.data || [];
+    const data = GpsPagingRes?.data || [];
     if (!data.length) {
       return toast.warning('No hay datos para exportar');
     }
 
     const flattenedData = data.map(item => {
       return {
-        email: item?.email,
+        email: item?.reference,
       };
     });
     const csv = generateCsv(csvConfig)(flattenedData);
@@ -103,13 +103,43 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
 
   ///* columns
-  const columns = useMemo<MRT_ColumnDef<Admin>[]>(
+  const columns = useMemo<MRT_ColumnDef<Gps>[]>(
     () => [
       {
-        accessorKey: 'email',
-        header: 'Email',
+        accessorKey: 'reference',
+        header: 'referencia',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'email'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'reference'),
+      },
+      {
+        accessorKey: 'client',
+        header: 'Cliente',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'client'),
+      },
+      {
+        accessorKey: 'phone',
+        header: 'Celular',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'phone'),
+      },
+      {
+        accessorKey: 'credit',
+        header: 'Saldo',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'credit'),
+      },
+      {
+        accessorKey: 'start_date',
+        header: 'Fecha de inicio',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'start_date'),
+      },
+      {
+        accessorKey: 'end_date',
+        header: 'Fecha de fin',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'end_date'),
       },
     ],
     []
@@ -117,18 +147,23 @@ const UsersPage: React.FC<UsersPageProps> = () => {
 
   return (
     <SingleTableBoxScene
-      title="Administradores"
-      createPageUrl={`${returnUrlUsersPage}/crear`}
+      title="Gps"
+      createPageUrl={`${returnUrlGpssPage}/crear`}
     >
       <CustomSearch
         onChange={onChangeFilter}
         value={globalFilter}
         text="por nombre"
       />
+      <CustomSearch
+        onChange={onChangeFilter}
+        value={globalFilter}
+        text="por referencia"
+      />
 
-      <CustomTable<Admin>
+      <CustomTable<Gps>
         columns={columns}
-        data={AdminPagingRes?.data || []}
+        data={GpsPagingRes?.data || []}
         isLoading={isLoading}
         isRefetching={isRefetching}
         // // search
@@ -136,7 +171,7 @@ const UsersPage: React.FC<UsersPageProps> = () => {
         // // pagination
         pagination={pagination}
         onPaging={setPagination}
-        rowCount={AdminPagingRes?.count}
+        rowCount={GpsPagingRes?.count}
         // // actions
         actionsColumnSize={180}
         // crud
@@ -152,5 +187,5 @@ const UsersPage: React.FC<UsersPageProps> = () => {
   );
 };
 
-export default UsersPage;
+export default GpssPage;
 

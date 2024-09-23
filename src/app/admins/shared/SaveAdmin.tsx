@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Admin } from '../../../shared/interfaces/app/admin.interface';
 import { CreateAdminParams, useCreateAdmin, useUpdateAdmin } from '../../../store/app/admin.actions';
-import { returnUrlUsersPage } from '../pages/UsersPage/UsersPage';
+import { returnUrlAdminsPage } from '../pages/AdminPage/AdminsPage';
 import { SingleFormBoxScene } from '../../../shared/components/ui/SingleFormBoxScene';
 import { CustomTextField } from '../../../shared/components/ui/CustomTextField';
 import { gridSizeMdLg6 } from '../../../shared/constants/grid-size.constants';
@@ -43,11 +43,11 @@ const SaveAdmin: React.FC<SaveAdminProps> = ({ title, admin }) => {
     ///* mutations
     const createAdminMutation = useCreateAdmin({
         navigate,
-        returnUrl: returnUrlUsersPage,
+        returnUrl: returnUrlAdminsPage,
     });
     const updateAdminMutation = useUpdateAdmin({
         navigate,
-        returnUrl: returnUrlUsersPage,
+        returnUrl: returnUrlAdminsPage,
     });
 
 
@@ -80,7 +80,7 @@ const SaveAdmin: React.FC<SaveAdminProps> = ({ title, admin }) => {
     return (
         <SingleFormBoxScene
             titlePage={title}
-            onCancel={() => navigate(returnUrlUsersPage)}
+            onCancel={() => navigate(returnUrlAdminsPage)}
             onSave={handleSubmit(onSave, () => {  })}
         >
             <CustomTextField
@@ -93,6 +93,8 @@ const SaveAdmin: React.FC<SaveAdminProps> = ({ title, admin }) => {
                 helperText={errors.email?.message}
                 size={gridSizeMdLg6}
             />
+
+            
 
 
             

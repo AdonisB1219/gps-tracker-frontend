@@ -7,9 +7,13 @@ import { AppLayout } from '../../app/layouts';
 import { DashboardHome } from '../../app/home/pages/DashboardHome';
 import AuthRoutes from '../AuthRoutes/AuthRoutes';
 import { AuthLayout } from '../../auth/layout';
-import UsersPage from '../../app/users/pages/UsersPage/UsersPage';
-import CreateAdminPage from '../../app/users/pages/CreateUserPage/CreateUserPage';
+import CreateAdminPage from '../../app/admins/pages/CreateAdminPage/CreateAdminPage';
 import Home from '../../landing/pages/Home';
+import ClientsPage from '../../app/clients/pages/ClientPage/ClientsPage';
+import AdminsPage from '../../app/admins/pages/AdminPage/AdminsPage';
+import CreateClientPage from '../../app/clients/pages/CreateClientPage/CreateClientPage';
+import GpssPage from '../../app/gps/pages/GpsPage.tsx/GpsPage';
+import CreateGpsPage from '../../app/gps/pages/CreateGpsPage/CreateGpsPage';
 
 
 const AppRouter = createBrowserRouter([
@@ -48,12 +52,29 @@ const AppRouter = createBrowserRouter([
       }, 
       {
         path: 'administradores',
-        element: <UsersPage />
+        element: <AdminsPage />
       },
       {
         path: 'administradores/crear',
         element: <CreateAdminPage />
-      }
+      },
+      {
+        path: 'clientes',
+        element: <ClientsPage />
+      },
+      {
+        path: 'clientes/crear',
+        element: <CreateClientPage />
+      },
+      {
+        path: 'gps',
+        element: <GpssPage />
+      },
+      {
+        path: 'gps/crear',
+        element: <CreateGpsPage />
+      },
+      
 
       ////* Pets
     ],

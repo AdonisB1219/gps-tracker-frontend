@@ -1,4 +1,4 @@
-import SaveAdmin from "../../shared/SaveUser";
+import SaveAdmin from "../../shared/SaveAdmin";
 
 
 export type CreateUserPageProps = {};
