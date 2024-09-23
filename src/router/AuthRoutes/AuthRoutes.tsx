@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/auth/auth.store';
+//import { useAuthStore } from '../../store/auth/auth.store';
 
 
 export interface AuthRoutesProps {
@@ -7,9 +7,10 @@ export interface AuthRoutesProps {
 }
 
 const AuthRoutes: React.FC<AuthRoutesProps> = ({ children }) => {
-  const isAuth = useAuthStore(s => s.isAuth);
-  //TODO change back to auth
-  return <Navigate to="/dashboard/home" replace />;
+  //const isAuth = useAuthStore(s => s.isAuth);
+  const isAuth = true;
+  //TODO change back to
+  return !isAuth ? children : <Navigate to="/dashboard/home" replace />;
 };
 
 export default AuthRoutes;

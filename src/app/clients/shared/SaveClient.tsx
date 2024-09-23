@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,8 +21,6 @@ type SaveFormData = CreateClientParams & {};
 
 const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
     const navigate = useNavigate();
-
-    const [showPassword, setShowPassword] = useState(false);
 
 
     ///* form
