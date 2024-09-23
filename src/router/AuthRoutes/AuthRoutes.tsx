@@ -8,8 +8,8 @@ export interface AuthRoutesProps {
 
 const AuthRoutes: React.FC<AuthRoutesProps> = ({ children }) => {
   const isAuth = useAuthStore(s => s.isAuth);
-
-  return !isAuth ? children : <Navigate to="/dashboard/home" replace />;
+  //TODO change back to auth
+  return <Navigate to="/dashboard/home" replace />;
 };
 
 export default AuthRoutes;
