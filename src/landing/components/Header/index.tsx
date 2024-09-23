@@ -46,7 +46,7 @@ const Header = () => {
           onClick={() => scrollTo("Ingresar")}
         >
           <Span>
-            <NavLink to="/auth" >
+            <NavLink to="/dashboard/home" >
             <Button color="#E5CD8C">{"Ingresar"}</Button>
             </NavLink>
           </Span>

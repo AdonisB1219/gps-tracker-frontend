@@ -3,12 +3,15 @@ import Drawer from '@mui/material/Drawer';
 import ListItemButton from '@mui/material/ListItemButton';
 import Stack from '@mui/material/Stack';
 import { alpha, Theme } from '@mui/material/styles';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from '../../../hooks/ui/usePathname';
 import { useResponsive } from '../../../hooks/ui/useResponsive';
 import { navConfig, NAV } from '../../../constants';
 import { Scrollbar } from '../Scrollbar';
 import { CustomRouterLink } from './components';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { Collapse } from '@mui/material';
+import { NavItemInterface } from '../../../constants';
 
 
 interface NavProps {
@@ -24,10 +27,18 @@ interface NavItemProps {
   };
 }
 
+interface DropdownMenuProps {
+  item: {
+    title: string;
+    path?: string
+    children?: NavItemInterface[]; 
+    icon: React.ReactElement;
+  };
+}
+
 export default function SideNav({ openNav, onCloseNav }: NavProps) {
   const pathname = usePathname();
 
-  const user = {"rolId": 4}
 
   const upLg = useResponsive('up', 'lg');
 
@@ -58,14 +69,9 @@ export default function SideNav({ openNav, onCloseNav }: NavProps) {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {navConfig.map(item => {
-        if (item?.admin && (user?.rolId && user?.rolId <3)) {
-          return null;
-        }
-        if (item?.superadmin && (user?.rolId && user?.rolId <4)) {
-          return null;
-        }
 
-        return <NavItem key={item.title} item={item} />;
+        return item.children ? <DropdownMenu key={item.title} item={item}/> : <NavItem key={item.title} item={item} />;
+
       })}
     </Stack>
   );
@@ -161,3 +167,57 @@ function NavItem({ item }: NavItemProps) {
     </ListItemButton>
   );
 }
+
+const DropdownMenu = ({ item }: DropdownMenuProps) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <>
+      <ListItemButton
+        onClick={handleClick} 
+        sx={{
+          minHeight: 44,
+          borderRadius: 0.75,
+          typography: 'body2',
+          color: 'text.secondary',
+          textTransform: 'capitalize',
+          fontWeight: 'fontWeightMedium',
+          ...(open && {
+            color: 'primary.main',
+            fontWeight: 'fontWeightSemiBold',
+            bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.08),
+            '&:hover': {
+              bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.16),
+            },
+          }),
+        }}
+      >
+        <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+          {item.icon}
+        </Box>
+
+        <Box component="span">{item.title}</Box>
+
+        <Box component="span" sx={{ width: 24, height: 24, ml: 2, display: 'flex', alignItems: 'center'}}>
+        {open ? <FaCaretUp /> : <FaCaretDown />}
+        </Box>
+      </ListItemButton>
+
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <Box sx={{ pl: 4 }}>
+          {/* Aquí puedes poner los submenús o botones adicionales */}
+          {item.children?.map(item => {
+
+return  <NavItem key={item.title} item={item} />;
+
+})}
+        </Box>
+      </Collapse>
+    </>
+  );
+};
+

@@ -2,19 +2,20 @@ import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
-
-import { useUiConfirmModalStore } from '../../../../store/ui';
-import { useTableFilter } from '../../../../shared/hooks/useTableFilter';
-import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.utils';
-import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
-import { CustomTable } from '../../../../shared/components/ui/CustomTable';
-import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
-import { Client } from '../../../../shared/interfaces/app/client.interface';
 import { toast } from 'react-toastify';
-import { ExportExcelButton } from '../../../../shared/components/ui/CustomButtons';
-import { useDeleteClient, useFetchClients } from '../../../../store/app/client.actions';
+import { ExportExcelButton } from '../../../../../shared/components/ui/CustomButtons';
+import { CustomSearch } from '../../../../../shared/components/ui/CustomSearch';
+import { CustomTable } from '../../../../../shared/components/ui/CustomTable';
+import { SingleTableBoxScene } from '../../../../../shared/components/ui/SingleTableBoxScene';
+import { useTableFilter } from '../../../../../shared/hooks/useTableFilter';
+import { Client } from '../../../../../shared/interfaces/app/client.interface';
+import { emptyCellOneLevel } from '../../../../../shared/util/empty-cell-table.utils';
+import { useDeleteClient, useFetchClients } from '../../../../../store/app/client.actions';
+import { useUiConfirmModalStore } from '../../../../../store/ui';
 
-export const returnUrlClientsPage = '/dashboard/clientes';
+
+
+export const returnUrlClientsPage = '/dashboard/servicio/clientes';
 
 export type ClientsPageProps = {};
 

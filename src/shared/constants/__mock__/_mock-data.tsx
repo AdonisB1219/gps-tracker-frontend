@@ -2,15 +2,14 @@ import { ReactElement } from 'react';
 import { FaHome, FaLocationArrow, FaUser, FaUserTie } from 'react-icons/fa';
 import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6';
 
-interface NavItem {
+export interface NavItemInterface {
   title: string;
   path: string;
   icon: ReactElement;
-  admin?: boolean;
-  superadmin?: boolean;
+  children?: NavItemInterface[];
 }
 
-export const navConfig: NavItem[] = [
+export const navConfig: NavItemInterface[] = [
   // home
   {
     title: 'Inicio',
@@ -23,23 +22,40 @@ export const navConfig: NavItem[] = [
     icon: <FaUserTie />,
   },
   {
-    title: 'Clientes',
-    path: '/dashboard/clientes',
+    title: 'Servicio',
+    path: '/dashboard/servicio',
     icon: <FaUser />,
+    children:
+    [
+      {
+        title: 'Clientes',
+        path: '/dashboard/servicio/clientes',
+        icon: <FaUser />,
+      },
+      {
+        title: 'GPS',
+        path: '/dashboard/servicio/gps',
+        icon: <FaLocationCrosshairs />,
+      },
+    ]
   },
+
   {
-    title: 'GPS',
-    path: '/dashboard/gps',
-    icon: <FaLocationCrosshairs />,
-  },
-  {
-    title: 'Mantenimiento Gps',
-    path: '/dashboard/mantenimiento/gps',
+    title: 'Mantenimiento',
+    path: '/dashboard/mantenimiento',
     icon: <FaLocationDot />,
+    children: [
+      {
+        title: 'Mantenimiento Gps',
+        path: '/dashboard/mantenimiento/gps',
+        icon: <FaLocationDot />,
+      },
+      {
+        title: 'Mantenimiento Microchips',
+        path: '/dashboard/mantenimiento/microchips',
+        icon: <FaLocationArrow />,
+      },
+    ]
   },
-  {
-    title: 'Mantenimiento Microchips',
-    path: '/dashboard/mantenimiento/microchips',
-    icon: <FaLocationArrow />,
-  },
+
 ];

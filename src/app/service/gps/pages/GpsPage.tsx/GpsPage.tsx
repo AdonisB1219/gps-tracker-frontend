@@ -2,19 +2,20 @@ import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
-
-import { useUiConfirmModalStore } from '../../../../store/ui';
-import { useTableFilter } from '../../../../shared/hooks/useTableFilter';
-import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.utils';
-import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
-import { CustomTable } from '../../../../shared/components/ui/CustomTable';
-import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
-import { Gps } from '../../../../shared/interfaces/app/gps.interface';
 import { toast } from 'react-toastify';
-import { ExportExcelButton } from '../../../../shared/components/ui/CustomButtons';
-import { useDeleteGps, useFetchGpss } from '../../../../store/app/gps.actions';
+import { ExportExcelButton } from '../../../../../shared/components/ui/CustomButtons';
+import { CustomSearch } from '../../../../../shared/components/ui/CustomSearch';
+import { CustomTable } from '../../../../../shared/components/ui/CustomTable';
+import { SingleTableBoxScene } from '../../../../../shared/components/ui/SingleTableBoxScene';
+import { useTableFilter } from '../../../../../shared/hooks/useTableFilter';
+import { Gps } from '../../../../../shared/interfaces/app/gps.interface';
+import { emptyCellOneLevel } from '../../../../../shared/util/empty-cell-table.utils';
+import { useDeleteGps, useFetchGpss } from '../../../../../store/app/gps.actions';
+import { useUiConfirmModalStore } from '../../../../../store/ui';
 
-export const returnUrlGpssPage = '/dashboard/gps';
+
+
+export const returnUrlGpssPage = '/dashboard/servicio/gps';
 
 export type GpssPageProps = {};
 

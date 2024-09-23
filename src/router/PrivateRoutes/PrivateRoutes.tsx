@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/auth/auth.store';
+//import { useAuthStore } from '../../store/auth/auth.store';
 
 
 export interface PrivateRoutesProps {
@@ -7,7 +7,9 @@ export interface PrivateRoutesProps {
 }
 
 const PrivateRoutes: React.FC<PrivateRoutesProps> = ({ children }) => {
-  const isAuth = useAuthStore(s => s.isAuth);
+  //const isAuth = useAuthStore(s => s.isAuth);
+  //TODO use auth
+  const isAuth = true;
 
   return !isAuth ? <Navigate to="/" replace /> : children;
 };
