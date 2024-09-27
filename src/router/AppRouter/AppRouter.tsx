@@ -14,6 +14,8 @@ import CreateClientPage from '../../app/service/clients/pages/CreateClientPage/C
 import CreateGpsPage from '../../app/service/gps/pages/CreateGpsPage/CreateGpsPage';
 import GpssPage from '../../app/service/gps/pages/GpsPage.tsx/GpsPage';
 import Home from '../../landing/pages/Home';
+import SaveMtoGps from '../../app/maintenance/gps/pages/SaveMtnGps';
+import SaveMicro from '../../app/maintenance/microchips/pages/SaveMicro';
 
 
 
@@ -74,6 +76,14 @@ const AppRouter = createBrowserRouter([
       {
         path: 'servicio/gps/crear',
         element: <CreateGpsPage />
+      },
+      {
+        path: 'mantenimiento/gps',
+        element: <SaveMtoGps title='Mantenimiento Gps' />
+      },
+      {
+        path: 'mantenimiento/microchips',
+        element: <SaveMicro title='Mantenimiento Microchips' />
       },
       
 

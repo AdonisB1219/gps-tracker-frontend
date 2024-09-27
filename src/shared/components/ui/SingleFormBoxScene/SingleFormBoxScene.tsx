@@ -12,6 +12,7 @@ export type SingleFormBoxSceneProps = {
   ) => Promise<void>;
 
   disableSubmitBtn?: boolean;
+  customTextBtn?: string
 };
 
 const SingleFormBoxScene: React.FC<SingleFormBoxSceneProps> = ({
@@ -20,6 +21,7 @@ const SingleFormBoxScene: React.FC<SingleFormBoxSceneProps> = ({
   onCancel,
   onSave,
   disableSubmitBtn = false,
+  customTextBtn
 }) => {
   const isMobile = useIsMediaQuery('sm');
 
@@ -48,6 +50,7 @@ const SingleFormBoxScene: React.FC<SingleFormBoxSceneProps> = ({
                   onCancel={onCancel}
                   onSave={onSave}
                   disabled={disableSubmitBtn}
+                  customTextBtn={customTextBtn}
                 />
               </Grid>
             </Grid>

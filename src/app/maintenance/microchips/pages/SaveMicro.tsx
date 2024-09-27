@@ -4,14 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { CustomTextField } from '../../../../shared/components/ui/CustomTextField';
-import { SampleDatePicker } from '../../../../shared/components/ui/SampleDatePicker';
 import { SingleFormBoxScene } from '../../../../shared/components/ui/SingleFormBoxScene';
 import { gridSizeMdLg10, gridSizeMdLg6 } from '../../../../shared/constants';
 import { Gps } from '../../../../shared/interfaces/app/gps.interface';
 import { gpsFormSchema } from '../../../../shared/util/validation-schemas/app/gps/gps.schema';
 import { CreateGpsParams, useCreateGps, useUpdateGps } from '../../../../store/app/gps.actions';
-import { returnUrlGpssPage } from '../pages/GpsPage.tsx/GpsPage';
-import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
 
 
 
@@ -23,9 +20,10 @@ export interface SaveGpsProps {
 type SaveFormData = CreateGpsParams & {};
 
 
-const SaveGps: React.FC<SaveGpsProps> = ({ title, gps }) => {
+const SaveMicro: React.FC<SaveGpsProps> = ({ title, gps }) => {
     const navigate = useNavigate();
 
+    const returnUrlGpssPage = '/dashboard/mantenimiento/gps';
 
     ///* form
     const form = useForm<SaveFormData>({
@@ -86,53 +84,21 @@ const SaveGps: React.FC<SaveGpsProps> = ({ title, gps }) => {
             onSave={handleSubmit(onSave, () => {  })}
             customTextBtn='Verificar GPS'
         >
-                 <CustomSearch
-        onChange={() =>{}}
-        value={''}
-        text="cliente"
-      />
-
-<CustomSearch
-        onChange={() =>{}}
-        value={''}
-        text="gps"
-      />
             <CustomTextField
-                label="Referencia"
+                label="Modelo"
                 name="client"
                 type='text'
                 control={form.control}
                 defaultValue={form.getValues().client?.email}
                 error={errors.client?.email}
                 helperText={errors.client?.message}
-                size={gridSizeMdLg10}
+                size={gridSizeMdLg6}
             />
-<SampleDatePicker
-          label="Fecha de Inicio"
-          name="start_date"
-          control={form.control}
-          defaultValue={form.getValues().start_date}
-          error={errors.start_date}
-          helperText={errors.start_date?.message}
-          size={gridSizeMdLg6}
-          disabled={false}
-        />
 
-<SampleDatePicker
-          label="Fecha de Fin"
-          name="end_date"
-          control={form.control}
-          defaultValue={form.getValues().end_date}
-          error={errors.end_date}
-          helperText={errors.end_date?.message}
-          size={gridSizeMdLg6}
-          disabled={false}
-        />
-        
         
 
 <CustomTextField
-                label="Saldo"
+                label="Operadora"
                 name="credit"
                 type='text'
                 control={form.control}
@@ -144,7 +110,18 @@ const SaveGps: React.FC<SaveGpsProps> = ({ title, gps }) => {
 
             
 <CustomTextField
-                label="Celular"
+                label="Numero"
+                name="phone"
+                type='text'
+                control={form.control}
+                defaultValue={form.getValues().phone}
+                error={errors.phone}
+                helperText={errors.phone?.message}
+                size={gridSizeMdLg6}
+            />
+
+<CustomTextField
+                label="Saldo"
                 name="phone"
                 type='text'
                 control={form.control}
@@ -162,4 +139,4 @@ const SaveGps: React.FC<SaveGpsProps> = ({ title, gps }) => {
     );
 };
 
-export default SaveGps;
+export default SaveMicro;
