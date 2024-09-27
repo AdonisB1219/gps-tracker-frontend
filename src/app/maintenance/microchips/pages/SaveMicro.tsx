@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { CustomTextField } from '../../../../shared/components/ui/CustomTextField';
 import { SingleFormBoxScene } from '../../../../shared/components/ui/SingleFormBoxScene';
-import { gridSizeMdLg10, gridSizeMdLg6 } from '../../../../shared/constants';
+import {  gridSizeMdLg6 } from '../../../../shared/constants';
 import { Gps } from '../../../../shared/interfaces/app/gps.interface';
 import { gpsFormSchema } from '../../../../shared/util/validation-schemas/app/gps/gps.schema';
 import { CreateGpsParams, useCreateGps, useUpdateGps } from '../../../../store/app/gps.actions';
