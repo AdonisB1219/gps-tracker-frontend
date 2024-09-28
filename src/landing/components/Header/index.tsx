@@ -60,7 +60,7 @@ const Header = () => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <img src="logo.jpeg" width="101px"/>
+            <img src="logo.png" width="101px"/>
           </LogoContainer>
           <NotHidden>
             <MenuItem />

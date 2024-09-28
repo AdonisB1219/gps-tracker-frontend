@@ -43,10 +43,8 @@ const Footer = () => {
           <Row justify="space-between">
             <Col lg={10} md={10} sm={12} xs={12}>
               <Empty />
-              <Language>{"Direccion"}</Language>
-              <Para>Direccion</Para>
-              <Para>Direccion</Para>
-              <Para>Direccion</Para>
+              <Language>{"Dirección"}</Language>
+              <Para>Av. 25 de Julio y Av. Ernesto Albán Mosquera esquina.</Para>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{"Compañía"}</Title>
@@ -67,7 +65,7 @@ const Footer = () => {
             <NavLink to="/">
               <LogoContainer>
                 <img
-                  src="logo.jpeg"
+                  src="logo.png"
                   aria-label="homepage"
                   height="64px"
                 />

@@ -5,12 +5,12 @@
     {
       "title": "Lorem?",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      "icon": "logo.jpeg"
+      "icon": "logo.png"
     },
     {
       "title": "Lorem",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-      "icon": "logo.jpeg"
+      "icon": "logo.png"
     }
   ]
 }
