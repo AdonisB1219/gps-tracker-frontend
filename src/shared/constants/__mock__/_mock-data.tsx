@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { FaHome, FaLocationArrow, FaUser, FaUserTie } from 'react-icons/fa';
+import { FaHome, FaUser, FaUserTie } from 'react-icons/fa';
 import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6';
 
 export interface NavItemInterface {
@@ -49,11 +49,6 @@ export const navConfig: NavItemInterface[] = [
         title: 'Mantenimiento Gps',
         path: '/dashboard/mantenimiento/gps',
         icon: <FaLocationDot />,
-      },
-      {
-        title: 'Mantenimiento Microchips',
-        path: '/dashboard/mantenimiento/microchips',
-        icon: <FaLocationArrow />,
       },
     ]
   },

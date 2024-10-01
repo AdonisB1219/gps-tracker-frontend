@@ -1,13 +1,9 @@
-import { Client } from "./client.interface";
-
 export interface Gps {
     id: number;
-    client: Client,
-    reference: string,
-    credit: number,
-    start_date: string,
-    end_date: string,
-    phone: string
+    serial: string,
+    modelo: string,
+    lote: string,
+    bodega: string
   }
   
   export interface GpsPaginatedRes {

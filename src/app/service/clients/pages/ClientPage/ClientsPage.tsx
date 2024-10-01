@@ -107,34 +107,64 @@ const ClientsPage: React.FC<ClientsPageProps> = () => {
   const columns = useMemo<MRT_ColumnDef<Client>[]>(
     () => [
       {
-        accessorKey: 'name',
+        accessorKey: 'nombre',
         header: 'Nombre',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'name'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'nombre'),
       },
       {
-        accessorKey: 'identification',
-        header: 'Identificación',
+        accessorKey: 'apellidos',
+        header: 'Apellidos',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'identification'),
-      },
-      {
-        accessorKey: 'identification',
-        header: 'Dirección',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'identification'),
-      },
-      {
-        accessorKey: 'identification',
-        header: 'Teléfono',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'identification'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'apellidos'),
       },
       {
         accessorKey: 'email',
         header: 'Email',
         size: 180,
         Cell: ({ row }) => emptyCellOneLevel(row, 'email'),
+      },
+      {
+        accessorKey: 'provincia',
+        header: 'Provincia',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'provincia'),
+      },
+      {
+        accessorKey: 'ciudad',
+        header: 'Ciudad',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'ciudad'),
+      },
+      {
+        accessorKey: 'instagram',
+        header: 'Instagram',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'instagram'),
+      },
+      {
+        accessorKey: 'x',
+        header: 'X',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'x'),
+      },
+      {
+        accessorKey: 'cedula',
+        header: 'Cedula',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'cedula'),
+      },
+      {
+        accessorKey: 'ruc',
+        header: 'Ruc',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'ruc'),
+      },
+      {
+        accessorKey: 'razon_social',
+        header: 'Razon Social',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'razon_social'),
       },
     ],
     []

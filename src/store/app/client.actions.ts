@@ -23,6 +23,13 @@ export type GetUsersParams = {
     email?: string;
 };
 
+export const useGetClient = (id: number) => {
+    return useQuery({
+      queryKey: ['client', id],
+      queryFn: () => getClient(id),
+    });
+  };
+
 export const useFetchClients = (params?: GetClientParams) => {
     return useQuery({
         queryKey: ['clients', ...Object.values(params || {})],
@@ -103,6 +110,9 @@ export type GetClientParams = {
     email?: string;
 };
 
+export const getClient = (id: number) => {
+    return get<Client>(`/client/${id}`, true);
+};
 
 export const getClients = (params?: GetClientParams) => {
     const queryParams = getUrlParams(params || {});

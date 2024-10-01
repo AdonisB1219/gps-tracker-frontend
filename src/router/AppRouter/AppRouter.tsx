@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 
 import { PrivateRoutes } from '../PrivateRoutes';
@@ -11,12 +11,15 @@ import CreateAdminPage from '../../app/admins/pages/CreateAdminPage/CreateAdminP
 import AdminsPage from '../../app/admins/pages/AdminPage/AdminsPage';
 import ClientsPage from '../../app/service/clients/pages/ClientPage/ClientsPage';
 import CreateClientPage from '../../app/service/clients/pages/CreateClientPage/CreateClientPage';
-import CreateGpsPage from '../../app/service/gps/pages/CreateGpsPage/CreateGpsPage';
-import GpssPage from '../../app/service/gps/pages/GpsPage.tsx/GpsPage';
+import CreateGpsPage from '../../app/service/gps/pages/CreateRastreoPage/CreateRastreoPage';
+import GpssPage from '../../app/service/gps/pages/RastreoPage/RastreoPage';
 import Home from '../../landing/pages/Home';
-import SaveMtoGps from '../../app/maintenance/gps/pages/SaveMtnGps';
-import SaveMicro from '../../app/maintenance/microchips/pages/SaveMicro';
 import UpdateAdminPage from '../../app/admins/pages/UpdateAdminPage/UpdateAdminPage';
+import UpdateClientPage from '../../app/service/clients/pages/UpdateClientPage/UpdateClient';
+import UpdateRastreoPage from '../../app/service/gps/pages/UpdateRastreoPage/UpdateRastreoPage';
+import GpsPage from '../../app/maintenance/gps/pages/GpsPage/GpsPage';
+import CreateGpsMtoPage from '../../app/maintenance/gps/pages/CreateGps/CreateGps';
+import UpdateGpsPage from '../../app/maintenance/gps/pages/UpdateGps/UpdateGps';
 
 
 
@@ -75,6 +78,10 @@ const AppRouter = createBrowserRouter([
         element: <CreateClientPage />
       },
       {
+        path: 'servicio/clientes/editar/:id',
+        element: <UpdateClientPage />
+      },
+      {
         path: 'servicio/gps',
         element: <GpssPage />
       },
@@ -83,14 +90,23 @@ const AppRouter = createBrowserRouter([
         element: <CreateGpsPage />
       },
       {
-        path: 'mantenimiento/gps',
-        element: <SaveMtoGps title='Mantenimiento Gps' />
+        path: 'servicio/gps/editar/:id',
+        element: <UpdateRastreoPage />
       },
       {
-        path: 'mantenimiento/microchips',
-        element: <SaveMicro title='Mantenimiento Microchips' />
+        path: 'mantenimiento/gps',
+        element: <GpsPage />
+      },
+      {
+        path: 'mantenimiento/gps/crear',
+        element: <CreateGpsMtoPage />
+      },
+      {
+        path: 'mantenimiento/gps/editar/:id',
+        element: <UpdateGpsPage />
       },
       
+      { path: '*', element: <Navigate to="/" /> },
 
       ////* Pets
     ],

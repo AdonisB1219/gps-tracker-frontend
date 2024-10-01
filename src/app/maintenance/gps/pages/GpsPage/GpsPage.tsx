@@ -2,24 +2,23 @@ import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
-import { toast } from 'react-toastify';
-import { ExportExcelButton } from '../../../../../shared/components/ui/CustomButtons';
-import { CustomSearch } from '../../../../../shared/components/ui/CustomSearch';
-import { CustomTable } from '../../../../../shared/components/ui/CustomTable';
-import { SingleTableBoxScene } from '../../../../../shared/components/ui/SingleTableBoxScene';
+import { useUiConfirmModalStore } from '../../../../../store/ui';
+import { useDeleteGps, useFetchGpss } from '../../../../../store/app/gps.actions';
 import { useTableFilter } from '../../../../../shared/hooks/useTableFilter';
 import { Gps } from '../../../../../shared/interfaces/app/gps.interface';
+import { toast } from 'react-toastify';
 import { emptyCellOneLevel } from '../../../../../shared/util/empty-cell-table.utils';
-import { useDeleteGps, useFetchGpss } from '../../../../../store/app/gps.actions';
-import { useUiConfirmModalStore } from '../../../../../store/ui';
+import { SingleTableBoxScene } from '../../../../../shared/components/ui/SingleTableBoxScene';
+import { CustomTable } from '../../../../../shared/components/ui/CustomTable';
+import { ExportExcelButton } from '../../../../../shared/components/ui/CustomButtons';
 
 
 
-export const returnUrlGpssPage = '/dashboard/servicio/gps';
+export const returnUrlGpsPage = '/dashboard/mantenimiento/gps';
 
-export type GpssPageProps = {};
+export type GpsPageProps = {};
 
-const GpssPage: React.FC<GpssPageProps> = () => {
+const GpsPage: React.FC<GpsPageProps> = () => {
   const navigate = useNavigate();
 
   ///* global state
@@ -33,10 +32,8 @@ const GpssPage: React.FC<GpssPageProps> = () => {
 
   ///* table
   const {
-    globalFilter,
     pagination,
     searchTerm,
-    onChangeFilter,
     setPagination,
   } = useTableFilter();
 
@@ -55,13 +52,15 @@ const GpssPage: React.FC<GpssPageProps> = () => {
 
   ///* handlers
   const onEdit = (gps: Gps) => {
+
+    console.log(gps);
     setConfirmDialog({
       isOpen: true,
       title: 'Editar gps',
       subtitle: '¿Está seguro que desea editar este gps?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        navigate(`${returnUrlGpssPage}/editar/${gps.id}`);
+        navigate(`${returnUrlGpsPage}/editar/${gps.id}`);
       },
     });
   };
@@ -94,7 +93,7 @@ const GpssPage: React.FC<GpssPageProps> = () => {
 
     const flattenedData = data.map(item => {
       return {
-        email: item?.reference,
+        email: item?.serial,
       };
     });
     const csv = generateCsv(csvConfig)(flattenedData);
@@ -107,40 +106,30 @@ const GpssPage: React.FC<GpssPageProps> = () => {
   const columns = useMemo<MRT_ColumnDef<Gps>[]>(
     () => [
       {
-        accessorKey: 'reference',
-        header: 'referencia',
+        accessorKey: 'serial',
+        header: 'serial',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'reference'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'serial'),
       },
       {
-        accessorKey: 'client',
-        header: 'Cliente',
+        accessorKey: 'modelo',
+        header: 'modelo',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'client'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'modelo'),
       },
+
       {
-        accessorKey: 'phone',
-        header: 'Celular',
+        accessorKey: 'lote',
+        header: 'lote',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'phone'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'lote'),
       },
+
       {
-        accessorKey: 'credit',
-        header: 'Saldo',
+        accessorKey: 'bodega',
+        header: 'bodega',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'credit'),
-      },
-      {
-        accessorKey: 'start_date',
-        header: 'Fecha de inicio',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'start_date'),
-      },
-      {
-        accessorKey: 'end_date',
-        header: 'Fecha de fin',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'end_date'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'bodega'),
       },
     ],
     []
@@ -149,18 +138,8 @@ const GpssPage: React.FC<GpssPageProps> = () => {
   return (
     <SingleTableBoxScene
       title="Gps"
-      createPageUrl={`${returnUrlGpssPage}/crear`}
+      createPageUrl={`${returnUrlGpsPage}/crear`}
     >
-      <CustomSearch
-        onChange={onChangeFilter}
-        value={globalFilter}
-        text="por nombre"
-      />
-      <CustomSearch
-        onChange={onChangeFilter}
-        value={globalFilter}
-        text="por referencia"
-      />
 
       <CustomTable<Gps>
         columns={columns}
@@ -188,5 +167,5 @@ const GpssPage: React.FC<GpssPageProps> = () => {
   );
 };
 
-export default GpssPage;
+export default GpsPage;
 

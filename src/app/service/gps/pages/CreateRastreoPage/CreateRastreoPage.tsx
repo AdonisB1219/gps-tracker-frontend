@@ -1,4 +1,4 @@
-import SaveGps from "../../shared/SaveGps";
+import SaveGps from "../../shared/SaveRastreo";
 
 
 export type CreateGpsPageProps = {};

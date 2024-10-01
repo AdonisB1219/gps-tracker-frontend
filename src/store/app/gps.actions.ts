@@ -25,7 +25,7 @@ export type GetUsersParams = {
 
 export const useFetchGpss = (params?: GetGpsParams) => {
     return useQuery({
-        queryKey: ['clients', ...Object.values(params || {})],
+        queryKey: ['gps', ...Object.values(params || {})],
         queryFn: () => getGpss(params),
         retry: (failureCount, error: any) => {
             if (error.response?.status === 403) {
@@ -35,6 +35,14 @@ export const useFetchGpss = (params?: GetGpsParams) => {
           }
     });
 };
+
+
+export const useGetOneGps = (id: number) => {
+    return useQuery({
+      queryKey: ['gps', id],
+      queryFn: () => getOneGps(id),
+    });
+  };
 
 export const useCreateGps = ({ navigate, returnUrl }: MutationParams) => {
     const queryGps = useQueryClient();
@@ -80,11 +88,11 @@ export const useDeleteGps = () => {
     return useMutation({
         mutationFn: deleteGps,
         onSuccess: () => {
-            queryGps.invalidateQueries({ queryKey: ['clients'] });
+            queryGps.invalidateQueries({ queryKey: ['gps'] });
             toast.success('Gps eliminada correctamente');
         },
         onError: () => {
-            toast.error('Error al eliminar el client');
+            toast.error('Error al eliminar el gps');
         },
     });
 };
@@ -104,20 +112,26 @@ export type GetGpsParams = {
 };
 
 
+
+export const getOneGps = (id: number) => {
+    return get<Gps>(`/gps/${id}`, true);
+};
+
+
 export const getGpss = (params?: GetGpsParams) => {
     const queryParams = getUrlParams(params || {});
-    return get<GpsPaginatedRes>(`/client?${queryParams}`, true);
+    return get<GpsPaginatedRes>(`/gps?${queryParams}`, true);
 };
 
 export const createGps = (data: CreateGpsParams) => {
-    return post<Gps>(`/client`, data, true);
+    return post<Gps>(`/gps`, data, true);
 };
 
 export const updateGps = ({ id, data }: UpdateGpsParams) => {
-    return put<Gps>(`/client/${id}/`, data, true);
+    return put<Gps>(`/gps/${id}/`, data, true);
 };
 
 export const deleteGps = (id: number) => {
-    return remove<Gps>(`/client/${id}/`, true);
+    return remove<Gps>(`/gps/${id}/`, true);
 };
 

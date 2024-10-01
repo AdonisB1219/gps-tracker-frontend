@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { navConfig } from '../../../../../shared/constants/__mock__';
 import { useAuthStore } from '../../../../../store/auth/auth.store';
 import { Admin } from '../../../../../shared/interfaces/auth';
@@ -24,6 +24,7 @@ const AccountPopover = () => {
   ///* global state
     const logout = useAuthStore(s => s.logout);
     const user: Admin = useAuthStore(s => s.user)!;
+    const navigate = useNavigate();
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
     setOpen(event.currentTarget);
@@ -33,9 +34,11 @@ const AccountPopover = () => {
     setOpen(null);
   };
 
-  const onLogout = () => {
+
+  const onLogout = async () => {
     handleClose();
-    logout();
+    await logout();
+    navigate('/'); 
   };
 
   return (

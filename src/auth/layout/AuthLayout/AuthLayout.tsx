@@ -21,9 +21,8 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
           lg={7}
           sx={{
             alignItems: 'center',
-            background:
-              'radial-gradient(50% 50% at 50% 50%, #122647 0%, #213363 100%)',
-            color: 'white',
+            background: 'radial-gradient(circle, rgba(22,69,131,1) 26%, rgba(27,33,65,1) 59%)',
+           color: 'white',
             display: 'flex',
             justifyContent: 'center',
             '& img': {
@@ -35,14 +34,16 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
             <Typography
               align="center"
               color="inherit"
+              fontFamily="'Roboto', serif"  // Roboto con serif como fallback
               sx={{
                 fontSize: '40px',
                 lineHeight: '32px',
                 mb: 5,
+                fontWeight: 100, 
+    letterSpacing: '0.1em',
               }}
-              variant="h1"
             >
-              Bienvenido
+              BIENVENIDO
             </Typography>
 
             {/* <Typography

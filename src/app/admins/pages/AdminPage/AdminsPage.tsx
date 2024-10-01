@@ -6,7 +6,6 @@ import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useUiConfirmModalStore } from '../../../../store/ui';
 import { useTableFilter } from '../../../../shared/hooks/useTableFilter';
 import { emptyCellOneLevel } from '../../../../shared/util/empty-cell-table.utils';
-import { CustomSearch } from '../../../../shared/components/ui/CustomSearch';
 import { CustomTable } from '../../../../shared/components/ui/CustomTable';
 import { SingleTableBoxScene } from '../../../../shared/components/ui/SingleTableBoxScene';
 import { Admin } from '../../../../shared/interfaces/app/admin.interface';
@@ -32,10 +31,8 @@ const AdminsPage: React.FC<AdminsPageProps> = () => {
 
   ///* table
   const {
-    globalFilter,
     pagination,
     searchTerm,
-    onChangeFilter,
     setPagination,
   } = useTableFilter();
 
@@ -148,11 +145,6 @@ const AdminsPage: React.FC<AdminsPageProps> = () => {
       title="Administradores"
       createPageUrl={`${returnUrlAdminsPage}/crear`}
     >
-      <CustomSearch
-        onChange={onChangeFilter}
-        value={globalFilter}
-        text="por nombre"
-      />
 
       <CustomTable<Admin>
         columns={columns}

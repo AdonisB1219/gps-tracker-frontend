@@ -4,9 +4,15 @@ import { emailYupValidation } from '../../../auth.validacion-schema';
 
 export const clientFormSchema = yup.object({
     nombre: yup.string().required('El campo nombre es requerido'),
-    direccion: yup.string().required('El campo direccion es requerido'),
-    telefono: yup.string().required('El campo telefono es requerido'),
-    correo: emailYupValidation,
+    apellidos: yup.string().required('El campo apellidos es requerido'),
+    provincia: yup.string().required('El campo provincia es requerido'),
+    ciudad: yup.string().required('El campo ciudad es requerido'),
+    instagram: yup.string().required('El campo instagram es requerido'),
+    x: yup.string().required('El campo x es requerido'),
+    cedula: yup.string().required('El campo cedula es requerido'),
+    ruc: yup.string().required('El campo ruc es requerido'),
+    razon_social: yup.string().required('El campo razon_social es requerido'),
+    email: emailYupValidation,
   }
 
 );
