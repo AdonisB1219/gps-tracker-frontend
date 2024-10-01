@@ -54,6 +54,8 @@ const AdminsPage: React.FC<AdminsPageProps> = () => {
 
   ///* handlers
   const onEdit = (admin: Admin) => {
+
+    console.log(admin);
     setConfirmDialog({
       isOpen: true,
       title: 'Editar admin',
@@ -106,10 +108,36 @@ const AdminsPage: React.FC<AdminsPageProps> = () => {
   const columns = useMemo<MRT_ColumnDef<Admin>[]>(
     () => [
       {
+        accessorKey: 'nombre',
+        header: 'Nombre',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'nombre'),
+      },
+      {
         accessorKey: 'email',
         header: 'Email',
         size: 180,
         Cell: ({ row }) => emptyCellOneLevel(row, 'email'),
+      },
+
+      {
+        accessorKey: 'identificacion',
+        header: 'Identificacion',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'identificacion'),
+      },
+
+      {
+        accessorKey: 'telefono',
+        header: 'Telefono',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'telefono'),
+      },
+      {
+        accessorKey: 'direccion',
+        header: 'Direccion',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'direccion'),
       },
     ],
     []

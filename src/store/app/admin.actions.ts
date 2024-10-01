@@ -36,6 +36,15 @@ export const useFetchAdmins = (params?: GetAdminParams) => {
     });
 };
 
+
+export const useGetAdmin = (id: number) => {
+    return useQuery({
+      queryKey: ['admin', id],
+      queryFn: () => getAdmin(id),
+    });
+  };
+  
+
 export const useCreateAdmin = ({ navigate, returnUrl }: MutationParams) => {
     const queryClient = useQueryClient();
 
@@ -103,6 +112,9 @@ export type GetAdminParams = {
     email?: string;
 };
 
+export const getAdmin = (id: number) => {
+    return get<Admin>(`/admin/${id}`, true);
+};
 
 export const getAdmins = (params?: GetAdminParams) => {
     const queryParams = getUrlParams(params || {});

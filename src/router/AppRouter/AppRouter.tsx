@@ -16,6 +16,7 @@ import GpssPage from '../../app/service/gps/pages/GpsPage.tsx/GpsPage';
 import Home from '../../landing/pages/Home';
 import SaveMtoGps from '../../app/maintenance/gps/pages/SaveMtnGps';
 import SaveMicro from '../../app/maintenance/microchips/pages/SaveMicro';
+import UpdateAdminPage from '../../app/admins/pages/UpdateAdminPage/UpdateAdminPage';
 
 
 
@@ -60,6 +61,10 @@ const AppRouter = createBrowserRouter([
       {
         path: 'administradores/crear',
         element: <CreateAdminPage />
+      },
+      {
+        path: 'administradores/editar/:id',
+        element: <UpdateAdminPage />
       },
       {
         path: 'servicio/clientes',

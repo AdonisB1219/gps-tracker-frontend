@@ -3,6 +3,9 @@ import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import AppRouter from "./router/AppRouter/AppRouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import 'react-toastify/dist/ReactToastify.css';
+import { CustomConfirmDialog } from "./shared/components/ui/CustomConfirmDialog";
+
 
 function App() {
   
@@ -12,6 +15,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
 
       <RouterProvider router={AppRouter} />
+
+      <CustomConfirmDialog />
 
       <ToastContainer
         position="top-right"
