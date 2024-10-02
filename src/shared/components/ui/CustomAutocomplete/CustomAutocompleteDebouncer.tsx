@@ -2,7 +2,7 @@ import { Autocomplete, Grid, TextField } from '@mui/material';
 import { ClearIcon } from '@mui/x-date-pickers';
 import { Control, Controller, FieldError } from 'react-hook-form';
 
-import { gridSize } from '@/shared/constants';
+import { gridSize } from '../../../constants';
 
 export type CustomAutocompleteProps<T> = {
   name: string;

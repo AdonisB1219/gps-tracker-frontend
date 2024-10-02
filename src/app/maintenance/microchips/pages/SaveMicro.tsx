@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import dayjs from 'dayjs';
 import { CustomTextField } from '../../../../shared/components/ui/CustomTextField';
 import { SingleFormBoxScene } from '../../../../shared/components/ui/SingleFormBoxScene';
 import {  gridSizeMdLg6 } from '../../../../shared/constants';
@@ -50,9 +49,7 @@ const SaveMicro: React.FC<SaveGpsProps> = ({ title, gps }) => {
     ///* handlers
     const onSave = async (data: SaveFormData) => {
 
-        data.start_date = dayjs(data.start_date).format(
-            'YYYY-MM-DDTHH:mm:ss[Z]'
-          );
+
 
         console.log("onSave -> ",isValid)
         if (!isValid) return;        
@@ -73,7 +70,6 @@ const SaveMicro: React.FC<SaveGpsProps> = ({ title, gps }) => {
         reset({
             ...gps,
             /// gps
-            reference: gps?.reference,
         });
     }, [gps, reset]);
 
@@ -89,47 +85,12 @@ const SaveMicro: React.FC<SaveGpsProps> = ({ title, gps }) => {
                 name="client"
                 type='text'
                 control={form.control}
-                defaultValue={form.getValues().client?.email}
-                error={errors.client?.email}
-                helperText={errors.client?.message}
+                defaultValue={form.getValues().bodega}
+                error={errors.bodega}
+                helperText={errors.bodega?.message}
                 size={gridSizeMdLg6}
             />
 
-        
-
-<CustomTextField
-                label="Operadora"
-                name="credit"
-                type='text'
-                control={form.control}
-                defaultValue={form.getValues().credit}
-                error={errors.credit}
-                helperText={errors.credit?.message}
-                size={gridSizeMdLg6}
-            />
-
-            
-<CustomTextField
-                label="Numero"
-                name="phone"
-                type='text'
-                control={form.control}
-                defaultValue={form.getValues().phone}
-                error={errors.phone}
-                helperText={errors.phone?.message}
-                size={gridSizeMdLg6}
-            />
-
-<CustomTextField
-                label="Saldo"
-                name="phone"
-                type='text'
-                control={form.control}
-                defaultValue={form.getValues().phone}
-                error={errors.phone}
-                helperText={errors.phone?.message}
-                size={gridSizeMdLg6}
-            />
 
             
 

@@ -9,8 +9,8 @@ import {
 } from '@mui/material';
 import { indigo } from '@mui/material/colors';
 
-import { gridSize } from '@/shared/constants';
-import { useUiConfirmModalStore } from '@/store/ui';
+import { gridSize } from '../../../constants';
+import { useUiConfirmModalStore } from '../../../../store/ui';
 
 export type CustomConfirmDialogProps = {};
 
