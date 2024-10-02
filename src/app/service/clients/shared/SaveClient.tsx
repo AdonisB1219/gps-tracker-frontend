@@ -49,6 +49,7 @@ const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
   const onSave = async (data: SaveFormData) => {
     console.log("onSave -> ", isValid);
     if (!isValid) return;
+    
 
     ///* upd
     if (client?.id) {
@@ -123,7 +124,7 @@ const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
       <CustomTextField
         label="Email"
         name="email"
-        type="text"
+        type="email"
         control={form.control}
         defaultValue={form.getValues().email}
         error={errors.email}
@@ -171,7 +172,7 @@ const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
         size={gridSizeMdLg6}
       />
       <CustomTextField
-        label="razon_social"
+        label="Razon Social"
         name="razonSocial"
         type="text"
         control={form.control}

@@ -11,7 +11,7 @@ export const clientFormSchema = yup.object({
     x: yup.string().required('El campo x es requerido'),
     cedula: yup.string().required('El campo cedula es requerido'),
     ruc: yup.string().required('El campo ruc es requerido'),
-    razon_social: yup.string().required('El campo razon_social es requerido'),
+    razonSocial: yup.string().required('El campo razonSocial es requerido'),
     email: emailYupValidation,
   }
 
