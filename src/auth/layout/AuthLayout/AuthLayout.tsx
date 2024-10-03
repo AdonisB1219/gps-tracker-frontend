@@ -67,7 +67,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = () => {
               }}
             >
               <Box width="60%">
-                <img alt="Settings" src="/logo-azul.jpeg" draggable={false} />
+                <img alt="Settings" src="/logo.png" draggable={false} />
               </Box>
             </Box>
           </Box>

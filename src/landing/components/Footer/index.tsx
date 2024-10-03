@@ -30,7 +30,7 @@ const Footer = () => {
               <Para>
                 {`¿Tienes una pregunta?`}
               </Para>
-              <a href="mailto:l.qqbadze@gmail.com">
+              <a href="incontrodivino.com@gmail.com">
                 <Chat>{`Coméntala`}</Chat>
               </a>
             </Col>
@@ -50,7 +50,6 @@ const Footer = () => {
               <Title>{"Compañía"}</Title>
               <Large to="/">{"Nosotros"}</Large>
               <Large to="/">{"Blog"}</Large>
-              <Large to="/">{"Careers & Culture"}</Large>
             </Col>
           </Row>
         </Container>

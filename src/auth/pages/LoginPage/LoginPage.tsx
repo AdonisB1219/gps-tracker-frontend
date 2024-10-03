@@ -127,11 +127,6 @@ const LoginPage: React.FC<LoginPageInterface> = () => {
                   />
                 </Stack>
 
-                <ReCAPTCHA
-                  ref={captcha}
-                  sitekey="6LcaJM0pAAAAAPjBwZPKM1eB5z7nilfdJK4oZREf"
-                  onChange={onChange}
-                />
 
                 <Button
                   fullWidth
