@@ -12,8 +12,6 @@ import { useForm } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
 import { useState } from 'react';
-import { useRef } from 'react';
-import ReCAPTCHA from "react-google-recaptcha";
 import { loginFormSchema } from '../../../shared/util/auth.validacion-schema';
 import { CustomTextField } from '../../../shared/components/ui/CustomTextField';
 import { useLogin } from '../../../store/auth/auth.actions';
@@ -49,11 +47,6 @@ const LoginPage: React.FC<LoginPageInterface> = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  const captcha = useRef(null);
-
-  const onChange = () => {
-  }
 
 
   return (
