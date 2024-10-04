@@ -44,6 +44,9 @@ const Header = () => {
         <CustomNavLinkSmall onClick={() => scrollTo("accesorios")}>
           <Span>{"Accesorios"}</Span>
         </CustomNavLinkSmall>
+        <CustomNavLinkSmall onClick={() => scrollTo("catalogo")}>
+          <Span>{"Catálogo"}</Span>
+        </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={() => scrollTo("Ingresar")}

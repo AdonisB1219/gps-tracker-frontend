@@ -6,6 +6,8 @@ import MissionContent from "../content/MissionContent.json";
 import ProductContent from "../content/ProductContent.json";
 import ContactContent from "../content/ContactContent.json";
 import AboutContent from "../content/AboutContent.json"
+import CatalogContent from "../content/CatalogContent.json"
+
 import "./styles.css"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -57,6 +59,13 @@ const Home = () => {
         section={AboutContent.section}
         images={["bolsa.png", "ecuador.png", "js.png", "happy.png"]}
         id="accesorios"
+      />
+      <ContentBlock
+        direction="left"
+        title={CatalogContent.title}
+        content={CatalogContent.text}
+        images={["qbit.png", "qbit2.png", "gps.png", "gps2.png"]}
+        id="catalogo"
       />
       <Contact
         title={ContactContent.title}

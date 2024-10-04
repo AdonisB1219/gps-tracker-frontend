@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const StyledSwiperContainer = styled.div`
   .swiper-button-next,
   .swiper-button-prev {
-    color: #fff; /* Cambia el color a blanco */
+    color: #000; /* Cambia el color a blanco */
   }
 `;
 
