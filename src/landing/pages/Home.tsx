@@ -5,6 +5,7 @@ import MiddleBlockContent from "../content/MiddleBlockContent.json";
 import MissionContent from "../content/MissionContent.json";
 import ProductContent from "../content/ProductContent.json";
 import ContactContent from "../content/ContactContent.json";
+import AboutContent from "../content/AboutContent.json"
 import "./styles.css"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -33,8 +34,8 @@ const Home = () => {
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}
         button={MiddleBlockContent.button}
+        id="nosotros"
       />
-
       <ContentBlock
         direction="right"
         title={MissionContent.title}
@@ -48,6 +49,14 @@ const Home = () => {
         content={ProductContent.text}
         icon="satellital.jpeg"
         id="vision"
+      />
+      <ContentBlock
+        direction="right"
+        title={AboutContent.title}
+        content={AboutContent.text}
+        section={AboutContent.section}
+        images={["bolsa.png", "ecuador.png", "js.png", "happy.png"]}
+        id="accesorios"
       />
       <Contact
         title={ContactContent.title}

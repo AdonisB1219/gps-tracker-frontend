@@ -15,15 +15,17 @@ import {
   ButtonWrapper,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import Carousel from "../Carousel/Carousel";
 
 const ContentBlock = ({
-  icon,
   title,
   content,
   section,
   button,
   id,
   direction,
+  icon,
+  images
 }: ContentBlockProps) => {
 
   const navigate = useNavigate();
@@ -38,7 +40,13 @@ const ContentBlock = ({
           direction={direction}
         >
           <Col lg={11} md={11} sm={12} xs={24}>
-            <img src={icon} width="100%" height="100%" />
+          {
+            icon? (
+              <img src={icon} width="100%" height="100%" />
+            ) : (
+              <Carousel images={images!} />
+            )
+          }
           </Col>
           <Col lg={11} md={11} sm={11} xs={24}>
             <ContentWrapper>

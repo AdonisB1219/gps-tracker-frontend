@@ -1,16 +1,16 @@
 {
-  "title": "Lorem ipsum",
-  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+  "title": "Accesorios",
+  "text": "El accesorio de Incontrodivino es un dispositivo GPS integrado en una pulsera, collar o llavero, diseñado para la seguridad de las personas. Es discreto, cómodo y ligero, pensado para ser usado sin molestias. Fabricado con materiales duraderos, combina tecnología de localización en tiempo real con un diseño atractivo, permitiendo una fácil sincronización con la aplicación móvil para alertas y seguimiento.",
   "section": [
     {
       "title": "Lorem?",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      "icon": "logo.png"
+      "icon": "ecuador.png"
     },
     {
       "title": "Lorem",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-      "icon": "logo.png"
+      "icon": "js.png"
     }
   ]
 }

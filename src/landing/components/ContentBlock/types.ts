@@ -1,5 +1,6 @@
 export interface ContentBlockProps {
-  icon: string;
+  icon?: string;
+  images?: string[],
   title: string;
   content: string;
   section?: {
