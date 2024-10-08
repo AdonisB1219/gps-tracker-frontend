@@ -13,31 +13,47 @@ import {
   Empty,
   Language,
 } from "./styles";
-
+import { CustomNavLinkSmall, Span } from "../Header/styles";
 
 const Footer = () => {
-
-
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id) as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       <FooterSection>
         <Container>
-          <Row justify="space-between">
+          <Row justify="space-between"
+            style={{
+              maxWidth: "600px", 
+            }}>
             <Col lg={10} md={10} sm={12} xs={12}>
               <Language>{"Contacto"}</Language>
-              <Large to="/">{"Pongáse en contacto"}</Large>
-              <Para>
-                {`¿Tienes una pregunta?`}
-              </Para>
-              <a href="incontrodivino.com@gmail.com">
-                <Chat>{`Coméntala`}</Chat>
-              </a>
+              <CustomNavLinkSmall
+                style={{ color: "#213363", marginLeft: 0 }}
+                onClick={() => scrollTo("contact")}
+              >
+                <Span>{"Tienes una pregunta"}</Span>
+              </CustomNavLinkSmall>
             </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{"Nosotros"}</Title>
-              <Large to="/">{"Misión"}</Large>
-              <Large to="/">{"Visión"}</Large>
+            <Col lg={8} md={8} sm={12} xs={12} style={{ display: "flex", flexDirection: "column", gap: "0.2rem", alignItems: "start" }}>
+            <Title>{"Nosotros"}</Title>
+              <CustomNavLinkSmall
+                style={{ color: "#213363", marginLeft: 0 }}
+                onClick={() => scrollTo("mision")}
+              >
+                <Span>{"Misión"}</Span>
+              </CustomNavLinkSmall>
+              <CustomNavLinkSmall
+                style={{ color: "#213363", marginLeft: 0 }}
+                onClick={() => scrollTo("vision")}
+              >
+                <Span>{"Visión"}</Span>
+              </CustomNavLinkSmall>
             </Col>
           </Row>
           <Row justify="space-between">
@@ -45,11 +61,6 @@ const Footer = () => {
               <Empty />
               <Language>{"Dirección"}</Language>
               <Para>Av. 25 de Julio y Av. Ernesto Albán Mosquera esquina.</Para>
-            </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{"Compañía"}</Title>
-              <Large to="/">{"Nosotros"}</Large>
-              <Large to="/">{"Blog"}</Large>
             </Col>
           </Row>
         </Container>
@@ -59,18 +70,15 @@ const Footer = () => {
           <Row
             justify="space-between"
             align="middle"
-            style={{ paddingTop: "3rem" }}
+            style={{
+              maxWidth: "600px", 
+            }}
           >
             <NavLink to="/">
               <LogoContainer>
-                <img
-                  src="logo.png"
-                  aria-label="homepage"
-                  height="64px"
-                />
+                <img src="logo.png" aria-label="homepage" height="64px" />
               </LogoContainer>
             </NavLink>
-
           </Row>
         </Container>
       </Extra>
