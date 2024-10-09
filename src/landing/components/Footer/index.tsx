@@ -8,8 +8,6 @@ import {
   Extra,
   LogoContainer,
   Para,
-  Large,
-  Chat,
   Empty,
   Language,
 } from "./styles";
