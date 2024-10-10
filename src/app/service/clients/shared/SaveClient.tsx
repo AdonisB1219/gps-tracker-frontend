@@ -19,14 +19,14 @@ export interface SaveClientProps {
   client?: Client;
 }
 
-type SaveFormData = CreateClientParams & {};
+type SaveFormData = CreateClientParams;
 
 const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
   const navigate = useNavigate();
 
   ///* form
   const form = useForm<SaveFormData>({
-    resolver: yupResolver(clientFormSchema as any),
+    resolver: yupResolver(clientFormSchema),
   });
 
   const {
@@ -131,56 +131,30 @@ const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
         helperText={errors.email?.message}
         size={gridSizeMdLg6}
       />
+  
+     
       <CustomTextField
-        label="instagram"
-        name="instagram"
+        label="identificacion"
+        name="identificacion"
         type="text"
         control={form.control}
-        defaultValue={form.getValues().instagram}
-        error={errors.instagram}
-        helperText={errors.instagram?.message}
+        defaultValue={form.getValues().identificacion}
+        error={errors.identificacion}
+        helperText={errors.identificacion?.message}
         size={gridSizeMdLg6}
       />
+
       <CustomTextField
-        label="x"
-        name="x"
+        label="Dirección"
+        name="direccion"
         type="text"
         control={form.control}
-        defaultValue={form.getValues().x}
-        error={errors.x}
-        helperText={errors.x?.message}
+        defaultValue={form.getValues().direccion}
+        error={errors.direccion}
+        helperText={errors.direccion?.message}
         size={gridSizeMdLg6}
       />
-      <CustomTextField
-        label="cedula"
-        name="cedula"
-        type="text"
-        control={form.control}
-        defaultValue={form.getValues().cedula}
-        error={errors.cedula}
-        helperText={errors.cedula?.message}
-        size={gridSizeMdLg6}
-      />
-      <CustomTextField
-        label="ruc"
-        name="ruc"
-        type="text"
-        control={form.control}
-        defaultValue={form.getValues().ruc}
-        error={errors.ruc}
-        helperText={errors.ruc?.message}
-        size={gridSizeMdLg6}
-      />
-      <CustomTextField
-        label="Razon Social"
-        name="razonSocial"
-        type="text"
-        control={form.control}
-        defaultValue={form.getValues().razon_social}
-        error={errors.razon_social}
-        helperText={errors.razon_social?.message}
-        size={gridSizeMdLg6}
-      />
+   
     </SingleFormBoxScene>
   );
 };

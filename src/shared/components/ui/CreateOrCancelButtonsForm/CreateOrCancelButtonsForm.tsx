@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material';
+import { Button, Grid } from "@mui/material";
 
 export type CreateOrCancelButtonsFormProps = {
   onCancel: () => void;
@@ -7,15 +7,14 @@ export type CreateOrCancelButtonsFormProps = {
   saveTextBtn?: string;
   disabled?: boolean;
   pt?: number;
-  customTextBtn?: string,
-
+  customTextBtn?: string;
 };
 
 const CreateOrCancelButtonsForm: React.FC<CreateOrCancelButtonsFormProps> = ({
   onCancel,
-  cancelTextBtn = 'Cancelar',
+  cancelTextBtn = "Cancelar",
   onSave,
-  saveTextBtn = 'Guardar',
+  saveTextBtn = "Guardar",
   disabled = false,
   pt = 6,
   customTextBtn,
@@ -24,23 +23,41 @@ const CreateOrCancelButtonsForm: React.FC<CreateOrCancelButtonsFormProps> = ({
     <Grid container spacing={1} justifyContent="end" pt={pt}>
       <Grid item>
         <Button onClick={onCancel} variant="text">
-          {cancelTextBtn || 'Cancelar'}
+          {cancelTextBtn || "Cancelar"}
         </Button>
       </Grid>
 
       <Grid item>
         <Button onClick={onSave} variant="contained" disabled={disabled}>
-          {saveTextBtn || 'Guardar'}
+          {saveTextBtn || "Guardar"}
+        </Button>
+      </Grid>
+
+      <Grid item>
+        <Button
+          onClick={() => window.open("http://rastreo.novetrack.com/")}
+          variant="contained"
+          disabled={disabled}
+        >
+          Rastreo
         </Button>
       </Grid>
 
       {customTextBtn != null && (
-    <Grid item>
-      <Button onClick={() =>  window.location.href = 'https://messages.google.com/web/authentication?hl=es-419'} variant="contained" disabled={disabled}>
-        {customTextBtn}
-      </Button>
-    </Grid>
-  )}
+        <Grid item>
+          <Button
+            onClick={() =>
+              window.open(
+                "https://messages.google.com/web/authentication?hl=es-419"
+              )
+            }
+            variant="contained"
+            disabled={disabled}
+          >
+            {customTextBtn}
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 };

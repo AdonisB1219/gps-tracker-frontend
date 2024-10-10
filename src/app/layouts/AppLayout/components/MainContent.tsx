@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Box from '@mui/material/Box';
 import { ReactNode } from 'react';
 import { SxPropsThemeType } from '../../../../shared/interfaces/ui';
@@ -6,7 +7,7 @@ import { HEADER, NAV } from '../../../../shared/constants';
 
 
 
-const SPACING = 8;
+const SPACING = 0;
 
 interface MainContentProps {
   children: ReactNode;

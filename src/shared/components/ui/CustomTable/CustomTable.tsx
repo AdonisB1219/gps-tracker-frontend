@@ -1,4 +1,5 @@
-/* eslint-disable indent */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Card, IconButton, Tooltip } from '@mui/material';
 import {
   MaterialReactTable,

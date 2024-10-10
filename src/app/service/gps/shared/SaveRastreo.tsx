@@ -7,13 +7,15 @@ import { CustomTextField } from "../../../../shared/components/ui/CustomTextFiel
 import { SampleDatePicker } from "../../../../shared/components/ui/SampleDatePicker";
 import { SingleFormBoxScene } from "../../../../shared/components/ui/SingleFormBoxScene";
 import { gridSizeMdLg10, gridSizeMdLg6 } from "../../../../shared/constants";
-import {
-  useFetchGpss,
-} from "../../../../store/app/gps.actions";
+import { useFetchGpss } from "../../../../store/app/gps.actions";
 import { returnUrlGpssPage } from "../pages/RastreoPage/RastreoPage";
 import { Rastreo } from "../../../../shared/interfaces/app/rastreo.interface";
 import { CustomAutocompleteArrString } from "../../../../shared/components/ui/CustomAutocomplete";
-import { CreateRastreoParams, useCreateRastreo, useUpdateRastreo } from "../../../../store/app/rastreo.actions";
+import {
+  CreateRastreoParams,
+  useCreateRastreo,
+  useUpdateRastreo,
+} from "../../../../store/app/rastreo.actions";
 import { useFetchClients } from "../../../../store/app/client.actions";
 import { rastreoFormSchema } from "../../../../shared/util/validation-schemas/app/rastreo/rastreo.schema";
 
@@ -22,14 +24,14 @@ export interface SaveRastreoProps {
   rastreo?: Rastreo;
 }
 
-type SaveFormData = CreateRastreoParams & {};
+type SaveFormData = CreateRastreoParams;
 
 const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
   const navigate = useNavigate();
 
   ///* form
   const form = useForm<SaveFormData>({
-    resolver: yupResolver(rastreoFormSchema as any),
+    resolver: yupResolver(rastreoFormSchema),
   });
 
   const {
@@ -50,50 +52,47 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
 
   let referenciasGps: string[] = [];
 
-  let fetchedGps = useFetchGpss().data?.data;
+  const fetchedGps = useFetchGpss().data?.data;
   if (fetchedGps) {
     referenciasGps = fetchedGps.map((gps) => gps.serial);
   }
 
   let emailClients: string[] = [];
 
-  let fetchedClients = useFetchClients().data?.data;
+  const fetchedClients = useFetchClients().data?.data;
   if (fetchedClients) {
     emailClients = fetchedClients.map((client) => client.email);
   }
 
-  let fetchClients = useFetchClients();
-  let fetchGpss = useFetchGpss();
-
-
+  const fetchClients = useFetchClients();
+  const fetchGpss = useFetchGpss();
 
   ///* handlers
   const onSave = async (data: SaveFormData) => {
-    
-    data.fechaInicio = dayjs(data.fechaInicio).format(
-      "YYYY-MM-DDTHH:mm:ss[Z]"
-    );
+    data.fechaInicio = dayjs(data.fechaInicio).format("YYYY-MM-DDTHH:mm:ss[Z]");
     data.fechaFin = dayjs(data.fechaFin).format("YYYY-MM-DDTHH:mm:ss[Z]");
 
     if (!isValid) return;
 
-    let clientId = fetchClients.data?.data.filter(client => client.email === String(data.cliente))[0].id;
-    let gpsId = fetchGpss.data?.data.filter(gps => gps.serial === String(data.serial))[0].id;
+    const clientId = fetchClients.data?.data.filter(
+      (client) => client.email === String(data.cliente)
+    )[0].id;
+    const gpsId = fetchGpss.data?.data.filter(
+      (gps) => gps.serial === String(data.serial)
+    )[0].id;
 
-
-    let rastreoData = {
+    const rastreoData = {
       ...data,
       clientId,
       gpsId,
-      saldo: Number(data.saldo)
-    }
+      saldo: Number(data.saldo),
+    };
 
     ///* upd
     if (rastreo?.id) {
       updateRastreoMutation.mutate({ id: rastreo.id, data });
       return;
     }
-
 
     ///* create
     createRastreoMutation.mutate(rastreoData);
@@ -112,7 +111,9 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
     <SingleFormBoxScene
       titlePage={title}
       onCancel={() => navigate(returnUrlGpssPage)}
-      onSave={handleSubmit(onSave, (err) => {console.log(err)})}
+      onSave={handleSubmit(onSave, (err) => {
+        console.log(err);
+      })}
       customTextBtn="Obtener coordenadas"
     >
       <CustomAutocompleteArrString
@@ -150,7 +151,7 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg10}
       />
 
-<CustomTextField
+      <CustomTextField
         label="Celular"
         name="celular"
         type="text"
@@ -161,7 +162,7 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg6}
       />
 
-<CustomTextField
+      <CustomTextField
         label="Saldo"
         name="saldo"
         type="text"
@@ -172,10 +173,9 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg6}
       />
 
-      
       <SampleDatePicker
         label="Fecha de Inicio"
-        name="fecha_inicio"
+        name="fechaInicio"
         control={form.control}
         defaultValue={form.getValues().fechaInicio}
         error={errors.fechaInicio}
@@ -186,7 +186,7 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
 
       <SampleDatePicker
         label="Fecha de Fin"
-        name="fecha_fin"
+        name="fechaFin"
         control={form.control}
         defaultValue={form.getValues().fechaFin}
         error={errors.fechaFin}
@@ -194,8 +194,6 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg6}
         disabled={false}
       />
-
-      
     </SingleFormBoxScene>
   );
 };

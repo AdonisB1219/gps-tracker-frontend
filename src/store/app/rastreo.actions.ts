@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { appAPI } from "../../shared/axios/app-api";
 import { getUrlParams } from "../../shared/util/get-url-params";
@@ -18,7 +19,7 @@ export type GetRastreoParams = {
 
 
 export type CreateRastreoParams = {
-    id: number;
+    id?: number;
     cliente: string,
     serial: string,
     referencia: string,

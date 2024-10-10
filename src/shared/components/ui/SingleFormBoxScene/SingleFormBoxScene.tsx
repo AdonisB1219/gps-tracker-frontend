@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 
 import { useIsMediaQuery } from '../../../hooks/ui/useIsMediaQuery';

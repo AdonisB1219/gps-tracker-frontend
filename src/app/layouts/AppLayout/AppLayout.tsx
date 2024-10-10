@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';

@@ -16,7 +16,7 @@ import { loginFormSchema } from '../../../shared/util/auth.validacion-schema';
 import { CustomTextField } from '../../../shared/components/ui/CustomTextField';
 import { useLogin } from '../../../store/auth/auth.actions';
 
-export interface LoginPageInterface { }
+export type LoginPageInterface = object
 
 type LoginFormData = {
   username_or_email: string;

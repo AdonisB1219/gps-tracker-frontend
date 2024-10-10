@@ -16,7 +16,7 @@ import { ExportExcelButton } from '../../../../../shared/components/ui/CustomBut
 
 export const returnUrlGpsPage = '/dashboard/mantenimiento/gps';
 
-export type GpsPageProps = {};
+export type GpsPageProps = object;
 
 const GpsPage: React.FC<GpsPageProps> = () => {
   const navigate = useNavigate();

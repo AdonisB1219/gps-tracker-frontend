@@ -13,14 +13,12 @@ import { useDeleteGps } from '../../../../../store/app/gps.actions';
 import { useUiConfirmModalStore } from '../../../../../store/ui';
 import { useFetchRastreo } from '../../../../../store/app/rastreo.actions';
 import { Rastreo } from '../../../../../shared/interfaces/app/rastreo.interface';
-import { IconButton, Tooltip } from '@mui/material';
-import { FaLocationDot } from 'react-icons/fa6';
 
 
 
 export const returnUrlGpssPage = '/dashboard/servicio/gps';
 
-export type GpssPageProps = {};
+export type GpssPageProps = object;
 
 const GpssPage: React.FC<GpssPageProps> = () => {
   const navigate = useNavigate();
@@ -181,13 +179,13 @@ const GpssPage: React.FC<GpssPageProps> = () => {
         data={GpsPagingRes?.data || []}
         isLoading={isLoading}
         isRefetching={isRefetching}
-        // // search
+        // search
         enableGlobalFilter={false}
-        // // pagination
+        // pagination
         pagination={pagination}
         onPaging={setPagination}
         rowCount={GpsPagingRes?.count}
-        // // actions
+        // actions
         actionsColumnSize={180}
         // crud
         onEdit={onEdit}
@@ -196,13 +194,7 @@ const GpssPage: React.FC<GpssPageProps> = () => {
         showOneCustomButton = {true}
         oneCustomButton={() => {
           return (
-            <Tooltip title="Localizar">
-            <IconButton
-              onClick={() =>  window.location.href = 'https://messages.google.com/web/authentication?hl=es-419'} 
-            >
-              <FaLocationDot />
-            </IconButton>
-          </Tooltip>
+           <></>
           )
         }}
         // excel

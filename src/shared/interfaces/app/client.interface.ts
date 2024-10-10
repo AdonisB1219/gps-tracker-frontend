@@ -5,11 +5,8 @@ export interface Client {
     provincia: string,
     ciudad: string,
     email: string,
-    instagram: string,
-    x: string,
-    cedula: string,
-    ruc: string,
-    razon_social: string,
+    identificacion: string,
+    direccion: string,
   }
   
   export interface ClientPaginatedRes {

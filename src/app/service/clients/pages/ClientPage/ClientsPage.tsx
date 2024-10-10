@@ -17,7 +17,7 @@ import { useUiConfirmModalStore } from '../../../../../store/ui';
 
 export const returnUrlClientsPage = '/dashboard/servicio/clientes';
 
-export type ClientsPageProps = {};
+export type ClientsPageProps = object;
 
 const ClientsPage: React.FC<ClientsPageProps> = () => {
   const navigate = useNavigate();
@@ -137,34 +137,10 @@ const ClientsPage: React.FC<ClientsPageProps> = () => {
         Cell: ({ row }) => emptyCellOneLevel(row, 'ciudad'),
       },
       {
-        accessorKey: 'instagram',
-        header: 'Instagram',
+        accessorKey: 'identificacion',
+        header: 'Identificación',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'instagram'),
-      },
-      {
-        accessorKey: 'x',
-        header: 'X',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'x'),
-      },
-      {
-        accessorKey: 'cedula',
-        header: 'Cedula',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'cedula'),
-      },
-      {
-        accessorKey: 'ruc',
-        header: 'Ruc',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'ruc'),
-      },
-      {
-        accessorKey: 'razon_social',
-        header: 'Razon Social',
-        size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'razon_social'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'identificacion'),
       },
     ],
     []
