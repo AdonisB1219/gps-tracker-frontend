@@ -116,6 +116,7 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
       })}
       customTextBtn="Obtener coordenadas"
     >
+
       <CustomAutocompleteArrString
         label="Serial"
         name="serial"

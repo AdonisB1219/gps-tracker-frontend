@@ -9,6 +9,7 @@ export interface Client {
     direccion: string,
   }
   
+  
   export interface ClientPaginatedRes {
     ok: boolean;
     count: number;

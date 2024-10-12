@@ -1,4 +1,5 @@
 import { Button, Grid } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 export type CreateOrCancelButtonsFormProps = {
   onCancel: () => void;
@@ -19,6 +20,9 @@ const CreateOrCancelButtonsForm: React.FC<CreateOrCancelButtonsFormProps> = ({
   pt = 6,
   customTextBtn,
 }) => {
+  const {pathname} = useLocation();
+
+
   return (
     <Grid container spacing={1} justifyContent="end" pt={pt}>
       <Grid item>
@@ -33,7 +37,7 @@ const CreateOrCancelButtonsForm: React.FC<CreateOrCancelButtonsFormProps> = ({
         </Button>
       </Grid>
 
-      <Grid item>
+     {pathname.includes("/servicio/gps/crear") && <Grid item>
         <Button
           onClick={() => window.open("http://rastreo.novetrack.com/")}
           variant="contained"
@@ -41,7 +45,7 @@ const CreateOrCancelButtonsForm: React.FC<CreateOrCancelButtonsFormProps> = ({
         >
           Rastreo
         </Button>
-      </Grid>
+      </Grid>}
 
       {customTextBtn != null && (
         <Grid item>

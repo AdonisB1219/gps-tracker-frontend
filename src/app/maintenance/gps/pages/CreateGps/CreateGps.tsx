@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import SaveMtoGps from "../../shared/SaveMtnGps";
 
 export type CreateGpsPageProps = {};
