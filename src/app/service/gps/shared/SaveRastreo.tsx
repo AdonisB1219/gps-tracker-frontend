@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { CustomTextField } from "../../../../shared/components/ui/CustomTextField";
 import { SampleDatePicker } from "../../../../shared/components/ui/SampleDatePicker";
 import { SingleFormBoxScene } from "../../../../shared/components/ui/SingleFormBoxScene";
-import { gridSizeMdLg10, gridSizeMdLg6 } from "../../../../shared/constants";
+import { gridSizeMdLg6 } from "../../../../shared/constants";
 import { useFetchGpss } from "../../../../store/app/gps.actions";
 import { returnUrlGpssPage } from "../pages/RastreoPage/RastreoPage";
 import { Rastreo } from "../../../../shared/interfaces/app/rastreo.interface";
@@ -18,6 +18,7 @@ import {
 } from "../../../../store/app/rastreo.actions";
 import { useFetchClients } from "../../../../store/app/client.actions";
 import { rastreoFormSchema } from "../../../../shared/util/validation-schemas/app/rastreo/rastreo.schema";
+import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 
 export interface SaveRastreoProps {
   title: string;
@@ -116,7 +117,6 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
       })}
       customTextBtn="Obtener coordenadas"
     >
-
       <CustomAutocompleteArrString
         label="Serial"
         name="serial"
@@ -149,8 +149,24 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         defaultValue={form.getValues().referencia}
         error={errors.referencia}
         helperText={"introduce la referencia"}
-        size={gridSizeMdLg10}
+        size={gridSizeMdLg6}
       />
+
+      <Grid item {...gridSizeMdLg6}>
+        <FormControl fullWidth error={!!errors.estado}>
+          <InputLabel id="estado">Estado</InputLabel>
+          <Select
+            labelId="estado"
+            id="estado"
+            {...form.register("estado")}
+            defaultValue={form.getValues().estado || ""}
+          >
+            <MenuItem value="activo">Activo</MenuItem>
+            <MenuItem value="inactivo">Inactivo</MenuItem>
+          </Select>
+          {errors.estado && <p>{errors.estado.message}</p>}
+        </FormControl>
+      </Grid>
 
       <CustomTextField
         label="Celular"

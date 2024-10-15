@@ -23,6 +23,7 @@ export type CreateRastreoParams = {
     cliente: string,
     serial: string,
     referencia: string,
+    estado: string,
     saldo: number,
     fechaInicio: string,
     fechaFin: string,

@@ -21,60 +21,66 @@ const ContentBlock = lazy(() => import("../components/ContentBlock"));
 const Home = () => {
   return (
     <>
-    <Header />
-    <Container>
-      <ScrollToTop />
-      <ContentBlock
-        direction="right"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="collage.jpeg"
-        id="intro"
-      />
-      <MiddleBlock
-        title={MiddleBlockContent.title}
-        content={MiddleBlockContent.text}
-        button={MiddleBlockContent.button}
-        id="nosotros"
-      />
-      <ContentBlock
-        direction="right"
-        title={MissionContent.title}
-        content={MissionContent.text}
-        icon="map.jpeg"
-        id="mision"
-      />
-      <ContentBlock
-        direction="left"
-        title={ProductContent.title}
-        content={ProductContent.text}
-        icon="satellital.jpeg"
-        id="vision"
-      />
-      <ContentBlock
-        direction="right"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
-        images={["bolsa.png", "ecuador.png", "js.png", "happy.png"]}
-        id="accesorios"
-      />
-      <ContentBlock
-        direction="left"
-        title={CatalogContent.title}
-        content={CatalogContent.text}
-        images={["qbit.png", "qbit2.png", "gps.png", "gps2.png"]}
-        id="catalogo"
-      />
-      <Contact
-        title={ContactContent.title}
-        content={ContactContent.text}
-        id="contact"
-      />
-    </Container>
-    <Footer />
-
+      <Header />
+      <Container>
+        <ScrollToTop />
+        <ContentBlock
+          direction="right"
+          title={IntroContent.title}
+          content={IntroContent.text}
+          button={IntroContent.button}
+          icon="collage.jpeg"
+          id="intro"
+        />
+        <MiddleBlock
+          title={MiddleBlockContent.title}
+          content={MiddleBlockContent.text}
+          button={MiddleBlockContent.button}
+          id="nosotros"
+        />
+        <ContentBlock
+          direction="right"
+          title={MissionContent.title}
+          content={MissionContent.text}
+          icon="map.jpeg"
+          id="mision"
+        />
+        <ContentBlock
+          direction="left"
+          title={ProductContent.title}
+          content={ProductContent.text}
+          icon="satellital.jpeg"
+          id="vision"
+        />
+        <ContentBlock
+          direction="right"
+          title={AboutContent.title}
+          content={AboutContent.text}
+          section={AboutContent.section}
+          images={[
+            "accesorio1.jpg",
+            "accesorio2.jpg",
+            "accesorio3.jpg",
+            "accesorio4.jpg",
+            "accesorio5.jpg",
+            "accesorio6.jpg",
+          ]}
+          id="accesorios"
+        />
+        <ContentBlock
+          direction="left"
+          title={CatalogContent.title}
+          content={CatalogContent.text}
+          images={["qbit.png", "qbit2.png", "gps.png", "gps2.png"]}
+          id="catalogo"
+        />
+        <Contact
+          title={ContactContent.title}
+          content={ContactContent.text}
+          id="contact"
+        />
+      </Container>
+      <Footer />
     </>
   );
 };
