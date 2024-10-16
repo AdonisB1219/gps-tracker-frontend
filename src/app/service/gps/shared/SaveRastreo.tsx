@@ -18,7 +18,7 @@ import {
 } from "../../../../store/app/rastreo.actions";
 import { useFetchClients } from "../../../../store/app/client.actions";
 import { rastreoFormSchema } from "../../../../shared/util/validation-schemas/app/rastreo/rastreo.schema";
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { useFetchMicrochips } from "../../../../store/app/microchip.actions";
 
 export interface SaveRastreoProps {
   title: string;
@@ -65,8 +65,17 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
     emailClients = fetchedClients.map((client) => client.email);
   }
 
+  let celularMicrochips: string[] = [];
+
+  const fetchedMicrochips = useFetchMicrochips().data?.data;
+  if (fetchedMicrochips) {
+    celularMicrochips = fetchedMicrochips.filter((micro) => micro.estado == "ACTIVO").map((micro) => micro.celular);
+  }
+
   const fetchClients = useFetchClients();
   const fetchGpss = useFetchGpss();
+  const fetchMicrochips = useFetchMicrochips();
+
 
   ///* handlers
   const onSave = async (data: SaveFormData) => {
@@ -82,10 +91,15 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
       (gps) => gps.serial === String(data.serial)
     )[0].id;
 
+    const microchipId = fetchMicrochips.data?.data.filter(
+      (micro) => micro.celular === String(data.celular)
+    )[0].id;
+
     const rastreoData = {
       ...data,
       clientId,
       gpsId,
+      microchipId,
       saldo: Number(data.saldo),
     };
 
@@ -104,6 +118,13 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
     if (!rastreo?.id) return;
     reset({
       ...rastreo,
+      estado: rastreo.microchip.estado,
+      serial: rastreo.gps.serial,
+      cliente: rastreo.client.email,
+      saldo: rastreo.microchip.saldo,
+      celular: rastreo.microchip.celular,
+      fechaFin: rastreo.fecha_fin,
+      fechaInicio: rastreo.fecha_inicio,
       /// gps
     });
   }, [rastreo, reset]);
@@ -141,6 +162,23 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg6}
         disableClearable
       />
+      <CustomAutocompleteArrString
+        label="celular"
+        name="celular"
+        options={celularMicrochips}
+        control={form.control}
+        defaultValue={form.getValues().celular}
+        error={errors.celular}
+        helperText={"Introduce un celular"}
+        isLoadingData={false}
+        size={gridSizeMdLg6}
+        disableClearable
+        onChangeValue={(value) => {
+          let micro = fetchedMicrochips?.filter((micro) => micro.celular == value)[0];
+          form.setValue('estado', micro?.estado || ''); 
+          form.setValue('saldo', (parseFloat(micro?.saldo || '')) || 0); 
+        }}
+      />
       <CustomTextField
         label="Referencia"
         name="referencia"
@@ -152,31 +190,17 @@ const SaveGps: React.FC<SaveRastreoProps> = ({ title, rastreo }) => {
         size={gridSizeMdLg6}
       />
 
-      <Grid item {...gridSizeMdLg6}>
-        <FormControl fullWidth error={!!errors.estado}>
-          <InputLabel id="estado">Estado</InputLabel>
-          <Select
-            labelId="estado"
-            id="estado"
-            {...form.register("estado")}
-            defaultValue={form.getValues().estado || ""}
-          >
-            <MenuItem value="activo">Activo</MenuItem>
-            <MenuItem value="inactivo">Inactivo</MenuItem>
-          </Select>
-          {errors.estado && <p>{errors.estado.message}</p>}
-        </FormControl>
-      </Grid>
-
-      <CustomTextField
-        label="Celular"
-        name="celular"
-        type="text"
+      <CustomAutocompleteArrString
+        label="Estado"
+        name="estado"
+        options={["ACTIVO", "INACTIVO"]}
         control={form.control}
-        defaultValue={form.getValues().celular}
-        error={errors.celular}
-        helperText={errors.celular?.message}
+        defaultValue={form.getValues().estado}
+        error={errors.estado}
+        helperText={"Introduce un estado"}
+        isLoadingData={false}
         size={gridSizeMdLg6}
+        disableClearable
       />
 
       <CustomTextField

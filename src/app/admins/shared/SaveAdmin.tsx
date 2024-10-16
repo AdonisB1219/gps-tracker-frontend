@@ -55,7 +55,6 @@ const SaveAdmin: React.FC<SaveAdminProps> = ({ title, admin }) => {
 
   ///* handlers
   const onSave = async (data: SaveFormData) => {
-    console.log("onSave -> ", isValid);
     if (!isValid) return;
 
     ///* upd

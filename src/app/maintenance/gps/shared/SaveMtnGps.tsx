@@ -48,8 +48,6 @@ const SaveMtoGps: React.FC<SaveGpsProps> = ({ title, gps }) => {
 
   ///* handlers
   const onSave = async (data: SaveFormData) => {
-    console.log(isValid);
-    console.log(data)
     if (!isValid) return;
 
     ///* upd

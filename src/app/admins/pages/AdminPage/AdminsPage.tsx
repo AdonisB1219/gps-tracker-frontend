@@ -52,7 +52,6 @@ const AdminsPage: React.FC<AdminsPageProps> = () => {
   ///* handlers
   const onEdit = (admin: Admin) => {
 
-    console.log(admin);
     setConfirmDialog({
       isOpen: true,
       title: 'Editar admin',

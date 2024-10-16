@@ -99,6 +99,7 @@ const GpssPage: React.FC<GpssPageProps> = () => {
     download(csvConfig)(csv);
   };
 
+  console.log(GpsPagingRes)
 
 
   ///* columns
@@ -114,19 +115,19 @@ const GpssPage: React.FC<GpssPageProps> = () => {
         accessorKey: "estado",
         header: "estado",
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, "estado"),
+        Cell: ({ row }) => emptyCellOneLevel(row, "microchip.estado"),
       },
       {
         accessorKey: "celular",
         header: "Celular",
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, "celular"),
+        Cell: ({ row }) => emptyCellOneLevel(row, "microchip.celular"),
       },
       {
         accessorKey: "saldo",
         header: "Saldo",
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, "saldo"),
+        Cell: ({ row }) => emptyCellOneLevel(row, "microchip.saldo"),
       },
       {
         accessorKey: "client.nombre",

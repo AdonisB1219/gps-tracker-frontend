@@ -2,23 +2,24 @@ import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
-import { useUiConfirmModalStore } from '../../../../../store/ui';
-import { useDeleteGps, useFetchGpss } from '../../../../../store/app/gps.actions';
-import { useTableFilter } from '../../../../../shared/hooks/useTableFilter';
-import { Gps } from '../../../../../shared/interfaces/app/gps.interface';
+
 import { toast } from 'react-toastify';
+import { useUiConfirmModalStore } from '../../../../../store/ui';
+import { useTableFilter } from '../../../../../shared/hooks/useTableFilter';
+import { Microchip } from '../../../../../shared/interfaces/app/microchip.interface';
 import { emptyCellOneLevel } from '../../../../../shared/util/empty-cell-table.utils';
 import { SingleTableBoxScene } from '../../../../../shared/components/ui/SingleTableBoxScene';
 import { CustomTable } from '../../../../../shared/components/ui/CustomTable';
 import { ExportExcelButton } from '../../../../../shared/components/ui/CustomButtons';
+import { useDeleteMicrochip, useFetchMicrochips } from '../../../../../store/app/microchip.actions';
 
 
 
-export const returnUrlGpsPage = '/dashboard/mantenimiento/gps';
+export const returnUrlMicrochipPage = '/dashboard/mantenimiento/microchips';
 
-export type GpsPageProps = object;
+export type MicrochipPageProps = object;
 
-const GpsPage: React.FC<GpsPageProps> = () => {
+const MicrochipPage: React.FC<MicrochipPageProps> = () => {
   const navigate = useNavigate();
 
   ///* global state
@@ -28,7 +29,7 @@ const GpsPage: React.FC<GpsPageProps> = () => {
   );
 
   ///* mutations
-  const deleteGps = useDeleteGps();
+  const deleteMicrochip = useDeleteMicrochip();
 
   ///* table
   const {
@@ -40,10 +41,10 @@ const GpsPage: React.FC<GpsPageProps> = () => {
   const { pageIndex, pageSize } = pagination;
 
   const {
-    data: GpsPagingRes,
+    data: MicrochipPagingRes,
     isLoading,
     isRefetching,
-  } = useFetchGpss({
+  } = useFetchMicrochips({
     page: pageIndex + 1,
     page_size: pageSize,
     email: searchTerm,
@@ -51,28 +52,28 @@ const GpsPage: React.FC<GpsPageProps> = () => {
 
 
   ///* handlers
-  const onEdit = (gps: Gps) => {
+  const onEdit = (Microchip: Microchip) => {
 
     setConfirmDialog({
       isOpen: true,
-      title: 'Editar gps',
-      subtitle: '¿Está seguro que desea editar este gps?',
+      title: 'Editar Microchip',
+      subtitle: '¿Está seguro que desea editar este Microchip?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        navigate(`${returnUrlGpsPage}/editar/${gps.id}`);
+        navigate(`${returnUrlMicrochipPage}/editar/${Microchip.id}`);
       },
     });
   };
 
   
-  const onDelete = (gps: Gps) => {
+  const onDelete = (Microchip: Microchip) => {
     setConfirmDialog({
       isOpen: true,
-      title: 'Eliminar gps',
-      subtitle: '¿Está seguro que desea eliminar este gps?',
+      title: 'Eliminar Microchip',
+      subtitle: '¿Está seguro que desea eliminar este Microchip?',
       onConfirm: () => {
         setConfirmDialogIsOpen(false);
-        deleteGps.mutate(gps.id);
+        deleteMicrochip.mutate(Microchip.id);
       },
     });
   };
@@ -85,14 +86,14 @@ const GpsPage: React.FC<GpsPageProps> = () => {
 
 
   const handleExportData = () => {
-    const data = GpsPagingRes?.data || [];
+    const data = MicrochipPagingRes?.data || [];
     if (!data.length) {
       return toast.warning('No hay datos para exportar');
     }
 
-    const flattenedData = data.map(item => {
+    const flattenedData = data.map((item) => {
       return {
-        email: item?.serial,
+        email: item?.celular,
       };
     });
     const csv = generateCsv(csvConfig)(flattenedData);
@@ -102,13 +103,13 @@ const GpsPage: React.FC<GpsPageProps> = () => {
 
 
   ///* columns
-  const columns = useMemo<MRT_ColumnDef<Gps>[]>(
+  const columns = useMemo<MRT_ColumnDef<Microchip>[]>(
     () => [
       {
-        accessorKey: 'serial',
-        header: 'serial',
+        accessorKey: 'celular',
+        header: 'celular',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'serial'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'celular'),
       },
       {
         accessorKey: 'modelo',
@@ -118,17 +119,24 @@ const GpsPage: React.FC<GpsPageProps> = () => {
       },
 
       {
-        accessorKey: 'lote',
-        header: 'lote',
+        accessorKey: 'operadora',
+        header: 'operadora',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'lote'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'operadora'),
       },
 
       {
-        accessorKey: 'bodega',
-        header: 'bodega',
+        accessorKey: 'saldo',
+        header: 'saldo',
         size: 180,
-        Cell: ({ row }) => emptyCellOneLevel(row, 'bodega'),
+        Cell: ({ row }) => emptyCellOneLevel(row, 'saldo'),
+      },
+
+      {
+        accessorKey: 'estado',
+        header: 'estado',
+        size: 180,
+        Cell: ({ row }) => emptyCellOneLevel(row, 'estado'),
       },
     ],
     []
@@ -136,13 +144,13 @@ const GpsPage: React.FC<GpsPageProps> = () => {
 
   return (
     <SingleTableBoxScene
-      title="Gps"
-      createPageUrl={`${returnUrlGpsPage}/crear`}
+      title="Microchip"
+      createPageUrl={`${returnUrlMicrochipPage}/crear`}
     >
 
-      <CustomTable<Gps>
+      <CustomTable<Microchip>
         columns={columns}
-        data={GpsPagingRes?.data || []}
+        data={MicrochipPagingRes?.data || []}
         isLoading={isLoading}
         isRefetching={isRefetching}
         // // search
@@ -150,7 +158,7 @@ const GpsPage: React.FC<GpsPageProps> = () => {
         // // pagination
         pagination={pagination}
         onPaging={setPagination}
-        rowCount={GpsPagingRes?.count}
+        rowCount={MicrochipPagingRes?.count}
         // // actions
         actionsColumnSize={180}
         // crud
@@ -166,5 +174,5 @@ const GpsPage: React.FC<GpsPageProps> = () => {
   );
 };
 
-export default GpsPage;
+export default MicrochipPage;
 
