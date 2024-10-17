@@ -9,12 +9,14 @@ export interface Rastreo {
     serial: string;
     bodega: string;
   };
+  microchip:{
+    estado: string;
+    saldo: number;
+    celular: string;
+  };
   referencia: string;
-  estado: string;
-  saldo: number;
   fecha_inicio: string;
   fecha_fin: string;
-  celular: string;
 }
 
 export interface RastreoPaginatedRes {

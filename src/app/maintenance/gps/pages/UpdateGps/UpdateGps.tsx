@@ -11,7 +11,6 @@ const UpdateGpsPage: React.FC<UpdateGpsPageProps> = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetOneGps(+id!);
 
-  console.log(isLoading, data)
 
   if (isLoading) return null;
   if (!data?.id) return <Navigate to={returnUrlGpsPage} />;

@@ -47,7 +47,6 @@ const SaveClient: React.FC<SaveClientProps> = ({ title, client }) => {
 
   ///* handlers
   const onSave = async (data: SaveFormData) => {
-    console.log("onSave -> ", isValid);
     if (!isValid) return;
     
 

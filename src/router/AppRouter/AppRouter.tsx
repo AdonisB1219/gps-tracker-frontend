@@ -20,6 +20,9 @@ import UpdateRastreoPage from '../../app/service/gps/pages/UpdateRastreoPage/Upd
 import GpsPage from '../../app/maintenance/gps/pages/GpsPage/GpsPage';
 import CreateGpsMtoPage from '../../app/maintenance/gps/pages/CreateGps/CreateGps';
 import UpdateGpsPage from '../../app/maintenance/gps/pages/UpdateGps/UpdateGps';
+import MicrochipPage from '../../app/maintenance/microchips/pages/MicrochipPage/MicrochipPage';
+import CreateMicroPage from '../../app/maintenance/microchips/pages/CreateMicrochip/CreateMicrochip';
+import UpdateMicrochipPage from '../../app/maintenance/microchips/pages/UpdateMicrochip/UpdateMicrochip';
 
 
 
@@ -104,6 +107,18 @@ const AppRouter = createBrowserRouter([
       {
         path: 'mantenimiento/gps/editar/:id',
         element: <UpdateGpsPage />
+      },
+      {
+        path: 'mantenimiento/microchips',
+        element: <MicrochipPage />
+      },
+      {
+        path: 'mantenimiento/microchips/crear',
+        element: <CreateMicroPage />
+      },
+      {
+        path: 'mantenimiento/microchips/editar/:id',
+        element: <UpdateMicrochipPage />
       },
       
       { path: '*', element: <Navigate to="/" /> },

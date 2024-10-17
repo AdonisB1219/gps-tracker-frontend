@@ -11,7 +11,6 @@ const UpdateClientPage: React.FC<UpdateClientPageProps> = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetClient(+id!);
 
-  console.log(isLoading, data)
 
   if (isLoading) return null;
   if (!data?.id) return <Navigate to={returnUrlClientsPage} />;

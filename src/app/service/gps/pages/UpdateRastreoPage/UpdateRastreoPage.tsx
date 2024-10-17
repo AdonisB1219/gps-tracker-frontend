@@ -11,7 +11,6 @@ const UpdateRastreoPage: React.FC<UpdateRastreoPageProps> = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetRastreo(+id!);
 
-  console.log(isLoading, data)
 
   if (isLoading) return null;
   if (!data?.id) return <Navigate to={returnUrlGpssPage} />;
