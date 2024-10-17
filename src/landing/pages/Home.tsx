@@ -64,6 +64,10 @@ const Home = () => {
             "accesorio4.jpg",
             "accesorio5.jpg",
             "accesorio6.jpg",
+            "accesorio7.jpg",
+            "accesorio8.jpg",
+            "accesorio9.jpg",
+            "accesorio10.jpg",
           ]}
           id="accesorios"
         />
